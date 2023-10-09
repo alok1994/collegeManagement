@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'loginapp',
+    'admissionapp',
     'dashboardapp',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -126,3 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_REDIRECT_URL = '/dashboard/'
+
+LOGIN_URL = '/loginapp/login/'  # This sets the URL where users will be redirected if they are not authenticated.
+LOGIN_REDIRECT_URL = '/dashboardapp/dashboard/'
+LOGOUT_REDIRECT_URL = '/logout/'

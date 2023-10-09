@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <style>
+        /* Center the content vertically and horizontally */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure the page takes at least the full viewport height */
+            margin: 0;
+            background-color: #f0f0f0; /* Optional background color */
+        }
+
+        /* Style the heading */
+        h1 {
+            color: green;
+        }
+
+        /* Style the login link */
+        p {
+            text-align: center;
+        }
+
+        /* Style the link color */
+        a {
+            color: blue; /* You can change the link color as needed */
+        }
+    </style>
+</head>
+<body>
+    <h1>Logout Successful</h1>
+    <p>You have been successfully logged out.</p>
+    <p><a href="{% url 'login' %}">Login Again</a></p>
+</body>
+</html>

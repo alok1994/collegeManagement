@@ -1,3 +1,66 @@
-{% block content %}
-  <h2>Welcome to the Dashboard</h2>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>College Management Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #a3d2d0;
+            color: #9d0808;
+            padding: 10px;
+            text-align: right;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+        <p>Welcome {{ user.username }}</p>
+    </header>
+    <div class="container">
+        <h1>College Management Dashboard</h1>
+        <ul>
+            <li><a href="{% url 'admission_form' %}">Admission Form</a></li>
+            <!-- Add more links as needed -->
+        </ul>
+    </div>
+</body>
+</html>

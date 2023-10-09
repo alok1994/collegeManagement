@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<p><a href="{% url 'dashboardpage' %}">Go to Dashboard</a></p>
+<head>
+    <meta charset="UTF-8">
+    <title>Admission Form</title>
+    <style>
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #14faf8;
+            background-color: #d0e7e8;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        /* Style for input fields */
+        input[type="text"],
+        input[type="date"],
+        input[type="file"],
+        textarea,
+        select {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 16px;
+        }
+
+        /* Style for the submit button */
+        .submit-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        /* Style for links */
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        /* Style for the logout link */
+        a[href*="logout"] {
+            float: right;
+        }
+
+        /* Style for the name fields to display inline */
+        .form-group.name-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-group.name-group input[type="text"] {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        /* Clearfix for form groups with floating elements */
+        .form-group::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Admission Form</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            {{ form.first_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="middle_name">Middle Name:</label>
+            {{ form.middle_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            {{ form.last_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="father_name">Father's Name:</label>
+            {{ form.father_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="mother_name">Mother's Name:</label>
+            {{ form.mother_name }}
+        </div>
+
+        <div class="form-group">
+            <label for="date_of_birth">Date of Birth:</label>
+            {{ form.date_of_birth }}
+        </div>
+
+        <div class="form-group">
+            <label for="photo">Photo:</label>
+            {{ form.photo }}
+        </div>
+
+        <div class="form-group">
+            <label for="marks_10th">10th Class Marks Obtained:</label>
+            {{ form.marks_10th }}
+        </div>
+
+        <div class="form-group">
+            <label for="marks_12th">12th Class Marks Obtained:</label>
+            {{ form.marks_12th }}
+        </div>
+
+        <div class="form-group">
+            <label for="admission_batch">Admission Batch:</label>
+            {{ form.admission_batch }}
+        </div>
+
+        <div class="form-group">
+            <label for="school_details_12th">12th Class School Details:</label>
+            {{ form.school_details_12th }}
+        </div>
+
+        <div class="form-group">
+            <label for="school_details_10th">10th Class School Details:</label>
+            {{ form.school_details_10th }}
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address:</label>
+            {{ form.address }}
+        </div>
+
+        <div class="form-group">
+            <label for="pass_out_year_12th">12th Pass Out Year:</label>
+            {{ form.pass_out_year_12th }}
+        </div>
+
+        <div class="form-group">
+            <label for="pass_out_year_10th">10th Pass Out Year:</label>
+            {{ form.pass_out_year_10th }}
+        </div>
+
+        <div class="form-group">
+            <label for="admission_date">Admission Date:</label>
+            {{ form.admission_date }}
+        </div>
+
+        <div class="form-group">
+            <label for="caste">Caste:</label>
+            {{ form.caste }}
+        </div>
+
+        <div class="form-group">
+            <label for="roll_number_12th">12th Class Roll Number:</label>
+            {{ form.roll_number_12th }}
+        </div>
+
+        <div class="form-group">
+            <label for="roll_number_10th">10th Class Roll Number:</label>
+            {{ form.roll_number_10th }}
+        </div>
+
+        <div class="form-group">
+            <label for="aadhar_number">Aadhar Number:</label>
+            {{ form.aadhar_number }}
+        </div>
+
+        <div class="form-group">
+            <label for="mobile_number">Mobile Number:</label>
+            {{ form.mobile_number }}
+        </div>
+
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</body>
+
+</html>
