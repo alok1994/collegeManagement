@@ -1,0 +1,39 @@
+<!-- admissions/templates/admissions/student_details.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+</head>
+<body>
+    <a href="{% url 'dashboardpage' %}">Dashboard</a>
+    <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+    <h1>Student Details</h1>
+    <img src="{{ student.photo.url }}" alt="{{ student.first_name }} {{ student.last_name }} Photo" width="100">
+    <p>Student's Name: {{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</p>
+    <p>Father's Name: {{ student.father_name }}</p>
+    <p>Mother's Name: {{ student.mother_name }}</p>
+    <p>Date of Birth: {{ student.date_of_birth }}</p>
+    <p>Aadhar Card: {{ student.aadhar_number }}</p>
+    <p>10th School Details: {{ student.school_details_10th }}</p>
+    <p>12th School Details: {{ student.school_details_12th }}</p>
+    <p>10th Total Mark Obtained: {{ student.marks_10th }} </p>
+    <p>12th Total Mark Obtained: {{ student.marks_12th }} </p>
+    <p>10th Pass Out Year: {{ student.pass_out_year_10th }} </p>
+    <p>12th Pass Out Year: {{ student.pass_out_year_12th }} </p>
+    <p>10th Roll Number: {{ student.roll_number_10th}}</p>
+    <p>12th Roll Number: {{ student.roll_number_12th}}</p>
+    <p>Address: {{ student.address }}</p>
+    <p>Caste: {{ student.caste }}</p>
+    <p>Admission Batch: {{ student.admission_batch }}</p>
+    <p>Admission Date: {{ student.admission_date }}</p>
+    <p>Mobile Number: {{ student.mobile_number }}</p>
+    <p>Subjects: {{ student.subjects }}</p>
+    <button onclick="printPage()">Print</button>
+    <a href="{% url 'student_list' %}">Back to Student List</a>
+    <script>
+        function printPage() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

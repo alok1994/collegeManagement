@@ -1,0 +1,74 @@
+<!-- receipt.html -->
+<style>
+    /* Define print-specific styles within a @media print rule */
+    @media print {
+      body {
+        font-size: 12pt;
+        margin: 0; /* Remove default page margins */
+      }
+  
+      /* Additional print-specific styles for your receipt content */
+      h2 {
+        font-size: 16pt;
+        text-align: center;
+      }
+  
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+  
+      table, th, td {
+        border: 1px solid #000; /* Add borders to table elements */
+      }
+  
+      /* Adjust other styles as needed for printing */
+    }
+  </style>
+<a href="{% url 'fee_detail' %}">Go to Fee Details</a>
+<h2>Receipt for Fee Submission</h2>
+<p>Fee ID: {{ fee.id }}</p>
+<p>Receipt Number: {{ fee.receipt_number }}</p>
+<table>
+  <tr>
+    <td>Student Name:</td>
+    <td>{{ student.first_name }} {{student.middle_name}} {{ student.last_name }}</td>
+  </tr>
+  <tr>
+    <td>Father's Name:</td>
+    <td>{{ student.father_name }}</td>
+  </tr>
+  <tr>
+    <td>Class:</td>
+    <td>{{ student.admission_class }}</td>
+  </tr>
+  <tr>
+    <td>Date of Payment:</td>
+    <td>{{ fee.payment_date }}</td>
+  </tr>
+  <tr>
+    <td>Fee Month:</td>
+    <td>{{ fee.month }}</td>
+  </tr>
+</table>
+
+<div class="signature-block">
+  <div class="student-signature">
+    <p>Student's Signature</p>
+    <!-- Add space for the student's signature -->
+  </div>
+  <div class="receiver-signature">
+    <p>Receiver's Signature</p>
+    <!-- Add space for the receiver's signature -->
+  </div>
+  <button id="print-button">Print Receipt</button>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Add the JavaScript code to handle the Print button click -->
+<script>
+  $(document).ready(function() {
+    $('#print-button').on('click', function() {
+      window.print(); // Trigger the browser's print dialog
+    });
+  });
+</script>

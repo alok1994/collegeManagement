@@ -6,7 +6,7 @@ class AdmissionForm(models.Model):
     last_name = models.CharField(max_length=50)
     father_name = models.CharField(max_length=100)
     mother_name = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to='admission_photos/', blank=True, null=True)
+    photo = models.ImageField(upload_to='admission_photos/')
     marks_10th = models.DecimalField(max_digits=5, decimal_places=2)
     marks_12th = models.DecimalField(max_digits=5, decimal_places=2)
     admission_batch = models.CharField(max_length=20)
@@ -22,6 +22,7 @@ class AdmissionForm(models.Model):
     aadhar_number = models.CharField(max_length=12, unique=True)
     mobile_number = models.CharField(max_length=10)
     date_of_birth = models.DateField()
+    subjects = models.CharField(max_length=1000) 
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

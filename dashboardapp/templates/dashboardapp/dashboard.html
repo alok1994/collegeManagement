@@ -1,10 +1,8 @@
-{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>College Management Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,7 +57,11 @@
         <h1>College Management Dashboard</h1>
         <ul>
             <li><a href="{% url 'admission_form' %}">Admission Form</a></li>
-            <!-- Add more links as needed -->
+            <a href="{% url 'student_list' %}" class="btn btn-primary">Student List</a>
+            <li><a href="{% url 'first_year' %}">First Year</a></li>
+            <li><a href="{% url 'second_year' %}">Second Year</a></li>
+            <li><a href="{% url 'third_year' %}">Third Year</a></li>
+            <li><a href="{% url 'fee_detail' %}">Fee Management</a></li>
         </ul>
     </div>
 </body>

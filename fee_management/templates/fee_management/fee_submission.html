@@ -1,0 +1,22 @@
+<!-- fee_management/templates/fee_management/fee_submission.html -->
+
+<!DOCTYPE html>
+<a href="{% url 'fee_detail' %}">Go to Fee Details</a>
+<a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fee Submission</title>
+</head>
+<body>
+    <h2>Fee Submission for {{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ fee_form.as_p }}
+        <button type="submit">Submit Fee</button>
+    </form>
+    {% if fee.id %}
+    <a href="{% url 'generate_receipt' fee.id %}">Generate Receipt</a>
+    {% endif %}
+</body>
+</html>
