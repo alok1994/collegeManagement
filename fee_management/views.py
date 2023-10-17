@@ -7,6 +7,7 @@ from datetime import datetime
 from django.utils.crypto import get_random_string
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from num2words import num2words
 
 @login_required
 def fee_detail(request):
@@ -15,66 +16,80 @@ def fee_detail(request):
     selected_class = request.GET.get('class_filter')  # Get the selected class from the query parameter
     # Filter fees based on the selected class (if provided)
     if selected_class:
-        class_students = AdmissionForm.objects.filter(admission_class=selected_class)
+        class_students = AdmissionForm.objects.filter(admission_batch=selected_class)
     else:
         class_students = AdmissionForm.objects.all()
 
-    # Pagination
     page = request.GET.get('page')
     paginator = Paginator(class_students, 20)  # Display 10 students per page, you can adjust this number as needed
 
     class_students = paginator.get_page(page)
 
-    last_month_fees = Fee.objects.filter(student__in=AdmissionForm.objects.all()).values('student').annotate(
-        last_month=Max('month'),
-        last_month_amount=Max('amount'),
-        last_month_payment_date=Max('payment_date')
-    )
-
-    # Create a dictionary mapping student IDs to their last month's fee data
-    last_month_fee_dict = {}
-    for fee in last_month_fees:
-        student_id = fee['student']
-        last_month_fee_dict[student_id] = {
-            'last_month': fee['last_month'],
-            'last_month_amount': fee['last_month_amount'],
-            'last_month_payment_date': fee['last_month_payment_date']
-        }
-
-    last_month_fee_list = []
 
     for student in class_students:
         student_id = student.id
-        last_month_data = last_month_fee_dict.get(student_id, {})
-        last_month_fee_list.append((student, last_month_data))
 
-    return render(request, 'fee_management/fee_detail.html', {'class_students': class_students, 'class_choices': class_choices, 'selected_class': selected_class, 'last_month_fee_list': last_month_fee_list})
+    return render(request, 'fee_management/fee_detail.html', {'class_students': class_students, 'class_choices': class_choices, 'selected_class': selected_class,})
 
 @login_required
 def fee_submission(request, student_id):
-    try:
-        student = AdmissionForm.objects.get(id=student_id)  # Retrieve the student using student_id
-    except Student.DoesNotExist:
-        # Handle the case where the student with the given ID does not exist
-        # You can raise an error, redirect to an error page, or handle it as needed
-        return redirect('error_page')  # Replace 'error_page' with your desired URL name
+    student = get_object_or_404(AdmissionForm, id=student_id)
 
     if request.method == 'POST':
         fee_form = FeeForm(request.POST)
         if fee_form.is_valid():
+            # Create a new Fee instance
+            fee = fee_form.save(commit=False)
+            
+            # Set the student for the fee
+            fee.student = student
+
+            # Generate a receipt number
             timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
             random_part = get_random_string(length=6, allowed_chars='1234567890')
-            receipt_number = f"R{timestamp}{random_part}"
-            fee = fee_form.save(commit=False)
-            fee.student = student
-            fee.receipt_number = receipt_number
+            fee.receipt_number = f"R{timestamp}{random_part}"
+
+            # Handle fields that might be None
+            fee.registration_fee = fee.registration_fee or 0
+            fee.tuition_fee = fee.tuition_fee or 0
+            fee.exam_fee = fee.exam_fee or 0
+            fee.sports_fee = fee.sports_fee or 0
+            fee.miscellaneous_fee = fee.miscellaneous_fee or 0
+
+            # Calculate the Total Amount
+            total_paid_amount = (
+                fee.registration_fee + fee.tuition_fee + fee.exam_fee +
+                fee.sports_fee + fee.miscellaneous_fee
+            )
+            fee.total_paid_amount = total_paid_amount
+
+            # Convert the Total Amount to Indian currency in words
+            total_amount_in_words = num2words(total_paid_amount, lang='en_IN')
+            fee.total_amount_in_words = total_amount_in_words
+
             fee.save()
-            print(f"Fee ID: {fee.id}")
-            return redirect('generate_receipt', fee.id)
+
+            return redirect('generate_receipt', fee_id=fee.id)
+        else:
+            print(fee_form.errors)
     else:
         fee_form = FeeForm()
 
     return render(request, 'fee_management/fee_submission.html', {'fee_form': fee_form, 'student': student})
+
+
+@login_required
+def generate_receipt(request, fee_id):
+    fee = get_object_or_404(Fee, id=fee_id)
+    student = fee.student
+
+    context = {
+        'student': student,
+        'fee': fee
+    }
+
+    return render(request, 'fee_management/receipt.html', context)
+
 
 @login_required
 def fee_history(request, student_id):
@@ -85,7 +100,7 @@ def fee_history(request, student_id):
 
     return render(request, 'fee_management/fee_history.html', {'student': student, 'fee_history': fee_history})
 
-@login_required
+'''@login_required
 def generate_receipt(request, fee_id):
     fee = get_object_or_404(Fee, id=fee_id)
     student = fee.student
@@ -95,4 +110,5 @@ def generate_receipt(request, fee_id):
         'fee': fee,
     }
 
-    return render(request, 'fee_management/receipt.html', context)
+    return render(request, 'fee_management/receipt.html', context)'''
+

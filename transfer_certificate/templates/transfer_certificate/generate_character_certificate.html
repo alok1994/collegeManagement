@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>छायाचित्र प्रमाणपत्र उत्पन्न करें</title>
+</head>
+<body>
+    <h1>छायाचित्र प्रमाणपत्र उत्पन्न करें</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">प्रमाणपत्र उत्पन्न करें</button>
+    </form>
+</body>
+</html>

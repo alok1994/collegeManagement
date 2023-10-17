@@ -1,14 +1,18 @@
 <!-- fee_history.html -->
 <a href="{% url 'fee_detail' %}">Go to Fee Details</a>
-<a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+<a href="{% url 'logout' %}?next=/loginapp/logout/" style="float: right;">Logout</a>
 <h2>Fee History for {{ student.first_name }} {{ student.last_name }}</h2>
 
 <table border="1">
   <thead>
     <tr>
       <th>Payment Date</th>
-      <th>Month</th> <!-- Add a column for the month -->
-      <th>Amount</th>
+      <th>Fee For Month</th> <!-- Add a column for the month -->
+      <th>Total Paid Amount</th>
+      <th>Registration Fee</th>
+      <th>Tuition Fee</th>
+      <th>Exam Fee</th>
+      <th>Miscellaneous Fee</th> 
       <!-- Add more columns as needed for fee history details -->
     </tr>
   </thead>
@@ -16,8 +20,12 @@
     {% for fee in fee_history %}
       <tr>
         <td>{{ fee.payment_date }}</td>
-        <td>{{ fee.month }}</td> 
-        <td>{{ fee.amount }}</td>
+        <td>{{ fee.fee_for_month }}</td> 
+        <td>{{ fee.total_paid_amount }}</td>
+        <td>{{ fee.registration_fee }}</td>
+        <td>{{ fee.tuition_fee }}</td>
+        <td>{{ fee.exam_fee }}</td>
+        <td>{{fee.miscellaneous_fee }}</td>
         <!-- Add more columns for other fee history details -->
       </tr>
     {% endfor %}

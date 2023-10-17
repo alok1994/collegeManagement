@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <a href="{% url 'dashboardpage' %}">Go to Dashboard</a>
-<a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+<a href="{% url 'logout' %}?next=/loginapp/logout/" style="float: right;">Logout</a>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -45,22 +45,16 @@
                 <th>Name</th>
                 <th>Father Name</th>
                 <th>Mother Name</th>
-                <th>Last Month</th>
-                <th>Last Month's Fee</th>
-                <th>Last Month's Payment Date</th> 
                 <th>Actions</th>
                 <!-- Add more table headers as needed -->
             </tr>
         </thead>    
         <tbody>
-            {% for student, last_month_data in last_month_fee_list %}
+            {% for student in class_students %}
             <tr>
                 <td>{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }} </td>
                 <td>{{ student.father_name }}</td>
                 <td>{{ student.mother_name }}</td>
-                <td>{{ last_month_data.last_month }}</td>
-                <td>{{ last_month_data.last_month_amount }}</td>
-                <td>{{ last_month_data.last_month_payment_date }}</td> 
                 <td>
                     <a href="{% url 'fee_submission' student.id %}">Submit Fee</a>
                     <a href="{% url 'fee_history' student.id %}">View Fee History</a>

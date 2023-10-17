@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import AdmissionForm
 from .forms import AdmissionFormForm
 from django.http import HttpResponse
+from django.http import JsonResponse
 
 def admission_form(request):
     if request.method == 'POST':
@@ -27,3 +28,21 @@ def admission_form(request):
 def admission_success(request):
     # You can customize this view to display a success message or redirect to another page
     return render(request, 'admissionapp/admission_success.html')
+
+
+def student_data_api(request):
+    # Query the database to retrieve student data
+    students = AdmissionForm.objects.all()
+
+    student_data = [
+        {
+            'first_name': student.first_name,
+            'middle_name': student.middle_name,
+            'last_name': student.last_name,
+            'admission_batch': student.admission_batch,
+        }
+        for student in students
+    ]
+    print(student_data)
+    # Return the JSON response
+    return JsonResponse(student_data, safe=False)

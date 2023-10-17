@@ -23,7 +23,7 @@ def student_list(request):
     if class_filter_form.is_valid():
         admission_batch = class_filter_form.cleaned_data.get('admission_batch')
         if admission_batch:
-            students = students.filter(admission_class__icontains=admission_batch)
+            students = students.filter(admission_batch__icontains=admission_batch)
 
     # Paginate the student list
     page = request.GET.get('page')

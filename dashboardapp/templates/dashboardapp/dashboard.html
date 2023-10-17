@@ -62,7 +62,62 @@
             <li><a href="{% url 'second_year' %}">Second Year</a></li>
             <li><a href="{% url 'third_year' %}">Third Year</a></li>
             <li><a href="{% url 'fee_detail' %}">Fee Management</a></li>
+            <li><a href="{% url 'student_list_details' %}">Character Certificate</a></li>
+            <li><a href="{% url 'student_list_details_transfer' %}">Transfer Certificate</a></li>
         </ul>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <div>
+            <canvas id="classChart" width="400" height="200"></canvas>
+        </div>
+        
+        <script>
+    // Fetch student data from the API endpoint
+    fetch('/admission/student-data-api/')
+        .then(response => response.json())
+        .then(data => {
+            // Process the data and update your chart
+            const classData = {}; // Object to store class data
+
+            // Process the data and populate classData object
+            data.forEach(student => {
+                const className = student.admission_batch;
+                if (!classData[className]) {
+                    classData[className] = 1;
+                } else {
+                    classData[className]++;
+                }
+            });
+
+            // Create the class chart
+            const classChartCanvas = document.getElementById('classChart').getContext('2d');
+            new Chart(classChartCanvas, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(classData), // Class names
+                    datasets: [{
+                        label: 'Number of Students',
+                        data: Object.values(classData), // Number of students per class
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar color
+                        borderColor: 'rgba(75, 192, 192, 1)', // Border color
+                        borderWidth: 1,
+                    }],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                },
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching student data:', error);
+        });
+
+</script>
+
     </div>
 </body>
 </html>

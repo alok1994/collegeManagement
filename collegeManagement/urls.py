@@ -8,7 +8,10 @@ urlpatterns = [
     path('admission/', include('admissionapp.urls')),
     path('student-list/', include('student_list.urls')),
     path('fee_management/', include('fee_management.urls')),
-
+    path('student_detail_char_cert/', include('character_certificate.urls')),
+    path('generate/', include('character_certificate.urls')),
+    path('student_detail_trans_cert/', include('transfer_certificate.urls')),
+    path('generate_tc/', include('transfer_certificate.urls')),
 ]
 
 from django.conf import settings
