@@ -57,6 +57,7 @@
                 <th class="aadhar-column">Aadhar Card</th>
                 <th class="admission-batch-column">Admission Batch</th>
                 <th class="mobile-number-column">Mobile Number</th>
+                <th class="registration-Number"> Registration Number</th>
                 <th>Details</th>
                 <th>Update</th> 
             </tr>
@@ -71,6 +72,7 @@
                     <td class="aadhar-column">{{ student.aadhar_number }}</td>
                     <td class="admission-class-column">{{ student.admission_batch }}</td>
                     <td class="mobile-number-column">{{ student.mobile_number }}</td>
+                    <td class="registration-Number">{{student.registration_number}}</td>
                     <td><a href="{% url 'student_details' student.id %}">Details</a></td>
                     <td><a href="{% url 'update_student' student.id %}">Update</a></td> 
                 </tr>

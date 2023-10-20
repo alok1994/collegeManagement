@@ -42,10 +42,6 @@
         ul li {
             margin-bottom: 10px;
         }
-
-        canvas {
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
@@ -57,7 +53,7 @@
         <h1>College Management Dashboard</h1>
         <ul>
             <li><a href="{% url 'admission_form' %}">Admission Form</a></li>
-            <a href="{% url 'student_list' %}" class="btn btn-primary">Student List</a>
+            <li><a href="{% url 'student_list' %}" class="btn btn-primary">Student List</a></li>
             <li><a href="{% url 'first_year' %}">First Year</a></li>
             <li><a href="{% url 'second_year' %}">Second Year</a></li>
             <li><a href="{% url 'third_year' %}">Third Year</a></li>
@@ -65,12 +61,11 @@
             <li><a href="{% url 'student_list_details' %}">Character Certificate</a></li>
             <li><a href="{% url 'student_list_details_transfer' %}">Transfer Certificate</a></li>
         </ul>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <div>
-            <canvas id="classChart" width="400" height="200"></canvas>
+            <canvas id="classChart" style="display: block;box-sizing: border-box;height: 624px;width: 800px;" width="1497" height="780"></canvas>
         </div>
-        
         <script>
     // Fetch student data from the API endpoint
     fetch('/admission/student-data-api/')
@@ -109,6 +104,9 @@
                             beginAtZero: true,
                         },
                     },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    aspectRatio: 0.2,
                 },
             });
         })

@@ -1,0 +1,32 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+.chandrika_head{
+    text-align: center;
+}
+.complete_form {
+    border: 2px solid #121111;
+    padding: 20px;
+    margin: 20px;
+    width: 50%;
+    margin: 0 auto;
+}
+.address_college {
+    text-align: center;
+    font-size: smaller;
+}

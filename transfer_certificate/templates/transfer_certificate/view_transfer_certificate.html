@@ -3,37 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>प्रमाणपत्र</title>
-    <style>
-        /* Add CSS for the border */
-        body {
-            border: 1px solid #000;
-            padding: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/tces.css">
 </head>
 <body>
+    <div class="trans_cer">
+        <p>
+            कॉलेज कोड: 0574
+            <p>दीनदयाल उपाध्याय गोरखपुर विश्वविद्यालय, गोरखपुर से संबद्ध</p>
+            <h1>चंद्रिका प्रसाद महाविद्यालय </h1> 
+            <p>ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर) </p>
+            <h3>स्थानांतरण प्रमाण पत्र</h3>
+            <p>क्रमांक.............</p>
+            <p>छात्र पंजीकरण संख्या: {{ admission_form.registration_number }}</p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;प्रमाणित किया जाता है कि श्री/कु0/श्रीमती 
+            {{ admission_form.first_name }} {{ admission_form.middle_name }} {{ admission_form.last_name }}
+            पुत्र/पुत्री/पत्नी श्री {{ admission_form.father_name }}
+            जिनका जन्म तिथि {{ admission_form.date_of_birth }}
+            है | सन <input type="text" name="start_year" value=""> से  <input type="text" name="end_year" value=""> तक 
+            <br>
+            इस महाविद्यालय में B.A. प्रथम/द्वितीय/तृतीय वर्ष के छात्र/छात्रा थे/थी |
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;इस सन <input type="text" name="exam_year" value=""> की <input type="text" name="exam_type" value=""> परीक्षा में <input type="text" name="exam_grade" value=""> श्रेष्ठी में उत्तरीद/अउत्तरीद 
+            होने के पश्चात् महाविद्यालय छोड़ रहे हैं |
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;जहाँ तक विदित है, इनका आचरण 
+            <input type="text" name="behavior" value="">
+            है |
+        </p>
+        
     <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;प्रमाणित किया जाता है कि श्री/कु0/श्रीमती _________________________________________________
-        <br>
-        पुत्र/पुत्री/पत्नी श्री _____________________________________________________________________________
-        <br>
-        जिनका जन्म तिथि ________________________________ है | सन ________________से _______________तक 
-        <br>
-        इस महाविद्यालय में B.A. प्रथम/द्वितीय/तृतीय वर्ष के छात्र/छात्रा थे/थी |
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;इस सन ______________की __________________परीक्षा में ________________श्रेष्ठी में उत्तरीद/अउत्तरीद 
-        <br>
-        होने के पश्चात् महाविद्यालय छोड़ रहे हैं |
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;जहाँ तक विदित है, इनका आचरण _________________________ है |
+        दिनांक: <input type="text" name="today_date" value="">
     </p>
-    <p>
-        दिनांक: _____________________________
+    <p class="lipik_class">
+        ह0 कार्यालय लिपिक
     </p>
-    <p>
-        ह0 कार्यालय लिपिक&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;प्रधानाचार्य
+    <p class="principle_class">प्रधानाचार्य</p>
+    <p style="text-align: center;">
+        <img src="/media/admission_photos/principle_signature.png" alt="प्रधानाचार्य">
     </p>
+    </p>
+  </div>
+  <button onclick="printCertificate()">Print Certificate</button><br>
+  <br>
+    <a href="{% url 'student_list_details_transfer' %}">Back to TC Student Details</a>
+  <script>
+        function printCertificate() {
+            window.print(); // This will trigger the print dialog
+        }
+  </script>
 </body>
+
 </html>
-<!-- "Back to Student Details" link is kept outside the border -->
-<a href="{% url 'student_list_details_transfer' %}">Back to TC Student Details</a>
+
+

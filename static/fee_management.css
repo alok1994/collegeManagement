@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+.student-details {
+    border: 1px solid #000;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.table-header {
+    display: flex;
+    justify-content: space between;
+    font-weight: bold;
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table th, .table td {
+    border: 1px solid #000;
+    padding: 5px;
+}
+.table th {
+    text-align: center;
+}
+.table td {
+    text-align: left;
+}
+.total-section {
+    margin-top: 20px;
+}
+.footer {
+    margin-top: 20px;
+}

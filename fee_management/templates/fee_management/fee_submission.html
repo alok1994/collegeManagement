@@ -4,45 +4,7 @@
 <a href="{% url 'logout' %}?next=/loginapp/logout/" style="float: right;">Logout</a>
 <head>
     <title>Fee Submission</title>
-    <style>
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            border: 1px solid #000;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .header {
-            font-size: 20px;
-            text-decoration: underline;
-            margin-bottom: 20px;
-        }
-
-        .section {
-            margin-bottom: 20px;
-        }
-
-        .table {
-            width: 95%;
-            border-collapse: inherit;
-        }
-
-        .table th, .table td {
-            border: 1px solid #000;
-            padding: 5px;
-        }
-
-        .table th {
-            text-align: center;
-        }
-
-        .table td {
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/fee_submission.css">
 </head>
 <body>
     <div class="container">

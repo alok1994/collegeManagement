@@ -3,55 +3,12 @@
   <a href="{% url 'fee_detail' %}">Back to Fee Details</a>
 <head>
     <title>Receipt for Fee Submission</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .student-details {
-            border: 1px solid #000;
-            padding: 10px;
-            margin-bottom: 20px;
-        }
-        .table-header {
-            display: flex;
-            justify-content: space between;
-            font-weight: bold;
-        }
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .table th, .table td {
-            border: 1px solid #000;
-            padding: 5px;
-        }
-        .table th {
-            text-align: center;
-        }
-        .table td {
-            text-align: left;
-        }
-        .total-section {
-            margin-top: 20px;
-        }
-        .footer {
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/static/fee_management.css">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h2>Receipt for Fee Submission</h2>
+            <h3>चंद्रिका प्रसाद महाविद्यालय</h3>
         </div>
         <div class="student-details">
             <p><b>Student Name:</b> {{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</p>

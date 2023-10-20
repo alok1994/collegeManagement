@@ -1,0 +1,54 @@
+.charac_cert {
+    border: 1px solid #000;
+    padding: 20px;
+    width: 50%;
+}
+p.lipik_class {
+    width: 45%;
+    display: inline-block;
+}
+p.principle_class {
+    width: 0%;
+    display: inline-block;
+    text-align: right;
+}
+.center-text {
+    text-align: center;
+}
+.inline-paragraphs {
+    display: inline-block;
+    vertical-align: top;
+    font-size: smaller;
+}
+.address_college {
+    text-align: center;
+    font-size: smaller;
+}
+.charac_cert_center_text {
+    border: 1px solid #000;
+    padding: 1px;
+    text-align: center;
+    width: 20%;
+    margin: 0 auto;
+}
+p.kramank-date {
+    margin-right: 10px; 
+}
+.static-box {
+    border: 1px solid #000;
+    padding: 20px;
+    width: 50%;
+} 
+.static-box {
+    border: 1px solid #000;
+    padding: 20px;
+    width: 50%;
+}
+
+.combined-info {
+    display: inline-block;
+}
+
+.college-code, .sub-heading {
+    display: inline;
+}
