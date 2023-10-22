@@ -4,37 +4,63 @@
     <meta charset="UTF-8">
     <title>प्रमाणपत्र</title>
     <link rel="stylesheet" type="text/css" href="/static/cces.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="charac_cert">
+    <div class="container charac_cert">
         <div class="static-box">
+          <div class="col-sm-3">
             <p class="combined-info">
                 <span class="college-code">कॉलेज कोड: 0574</span>
-                <span class="space"> &nbsp;
-                <span class="sub-heading">दीनदयाल उपाध्याय गोरखपुर विश्वविद्यालय, गोरखपुर से संबद्ध</span>
             </p>
-            <h1 class="center-text">चंद्रिका प्रसाद महाविद्यालय</h1> 
-            <p class="address_college">ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)</p>
-            <h3 class="charac_cert_center_text">चरित्र प्रमाण पत्र</h3>
-            <p class="date_input">क्रमांक............. दिनांक: <input type="text" name="today_date" value=""></p>
+          </div>
+          <div class="character_cer col-sm-9">
+                <span class="sub-heading">दीनदयाल उपाध्याय गोरखपुर विश्वविद्यालय, गोरखपुर से संबद्ध</span>
+                <h1 class="center-text">चंद्रिका प्रसाद महाविद्यालय</h1> 
+                <p class="address_college">ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)</p>
+                <h3 class="charac_cert_center_text">चरित्र प्रमाण पत्र</h3>
+                
+          </div> 
+          <div class="clearfix"></div>
+          <div class="col-sm-3">
+            <p class="date_numner">क्रमांक............. </p>
+          </div>
+
+        <div class="col-sm-9">
+        <p class="date_input"> दिनांक: <input type="text" name="today_date" value=""></p>
         </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;प्रमाणित किया जाता है कि श्री/कु0/श्रीमती {{ admission_form.first_name }} {{ admission_form.middle_name }} {{ admission_form.last_name }}
-        पुत्र/पुत्री/पत्नी श्री  {{ admission_form.father_name }} पता {{ admission_form.address }} |
-        इस विद्यालय के छात्र/छात्रा रहे हैं |
-        यह इस महाविद्यालय में कक्षा B A {{ admission_form.admission_batch}} Year के सत्र <input type="text" name="admission_year" value=" "> से <input type="text" name="exit_year" value=" ">
-        तक संस्थागत छात्र/छात्रा रहे हैं |
-        इन्होने सत्र <input type="text" name="exam_year" value=" "> में इस संस्था से कक्षा BA <input type="text" name="exam_batch" value=" "> Year की परीक्षा <input type="text" name="exam_grade" value=" ">
-        श्रेष्ठी में उत्तीरण/अनुत्तीरण किया | जहाँ तक मुझे ज्ञात है इनका चरित्र उत्तम है|<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;मैं जीवन में हर दृष्टि से इनकी सफलता की कामना करता है |
-    </div>
-    <p class="lipik_class">
-        ह0 कार्यालय लिपिक
-    </p>
-    <p class="principle_class">प्रधानाचार्य</p>
-    <p style="text-align: center;">
-        <img src="/media/admission_photos/principle_signature.png" alt="प्रधानाचार्य">
-    </p>
-    <br>
+        <div class="clearfix"></div>
+        <div class="col-sm-12">
+            <div class="character_content">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;प्रमाणित किया जाता है कि श्री/कु0/श्रीमती {{ admission_form.first_name }} {{ admission_form.middle_name }} {{ admission_form.last_name }}
+                पुत्र/पुत्री/पत्नी श्री  {{ admission_form.father_name }} पता {{ admission_form.address }} |
+                इस विद्यालय के छात्र/छात्रा रहे हैं |
+                यह इस महाविद्यालय में कक्षा B A {{ admission_form.admission_batch}} Year के सत्र <input type="text" name="admission_year" value=" "> से <input type="text" name="exit_year" value=" ">
+                तक संस्थागत छात्र/छात्रा रहे हैं |
+                इन्होने सत्र <input type="text" name="exam_year" value=" "> में इस संस्था से कक्षा BA <input type="text" name="exam_batch" value=" "> Year की परीक्षा <input type="text" name="exam_grade" value=" ">
+                श्रेष्ठी में उत्तीरण/अनुत्तीरण किया | जहाँ तक मुझे ज्ञात है इनका चरित्र उत्तम है|<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;मैं जीवन में हर दृष्टि से इनकी सफलता की कामना करता है |
+            </div>
+            <div class="col-sm-6">
+                <p class="lipik_class">
+                    ह0 कार्यालय लिपिक
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <p class="principle_class">प्रधानाचार्य</p>
+                <p class="principle_sign">
+                    <img src="/media/admission_photos/principle_signature.png" alt="प्रधानाचार्य">
+                </p>
+                <br>
+            </div>
+       
+        </div>
+        </div>
+ </div>
+   
     <button onclick="printCertificate()">Print Certificate</button><br>
     <a href="{% url 'student_list_details' %}">Back to CC Student Details</a>
     <script>

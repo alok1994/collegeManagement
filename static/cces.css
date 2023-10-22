@@ -1,16 +1,16 @@
-.charac_cert {
+/* .charac_cert {
     border: 1px solid #000;
     padding: 20px;
     width: 50%;
-}
+} */
 p.lipik_class {
-    width: 45%;
-    display: inline-block;
+    font-weight: bold;
+    margin-top: 30px;
 }
 p.principle_class {
-    width: 0%;
-    display: inline-block;
     text-align: right;
+    font-weight: bold;
+    margin-top: 30px;
 }
 .center-text {
     text-align: center;
@@ -28,7 +28,7 @@ p.principle_class {
     border: 1px solid #000;
     padding: 1px;
     text-align: center;
-    width: 20%;
+    width: 50%;
     margin: 0 auto;
 }
 p.kramank-date {
@@ -37,7 +37,8 @@ p.kramank-date {
 .static-box {
     border: 1px solid #000;
     padding: 20px;
-    width: 50%;
+    width: 60%;
+    display: inline-block;
 } 
 .static-box {
     border: 1px solid #000;
@@ -51,4 +52,28 @@ p.kramank-date {
 
 .college-code, .sub-heading {
     display: inline;
+}
+.character_cer {
+    text-align: center;
+}
+p.date_input {
+    text-align: right;
+    padding-top: 10px;
+}
+p.principle_sign img {
+    width: 250px;
+    float: right;
+}
+.character_content {
+    letter-spacing: 0.5px;
+    line-height: 1.8;
+}
+.character_content input {
+    margin: 3px 0px;
+}
+
+@media print {
+    .static-box {
+        width: 100%;
+    }
 }
