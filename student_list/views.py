@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from .forms import AdmissionYearFilterForm, AdmissionClassFilterForm
 from .forms import StudentUpdateForm
+from django.contrib import messages
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 
 
@@ -15,7 +18,7 @@ def student_list(request):
     # Apply filters if provided in the GET request
     year_filter_form = AdmissionYearFilterForm(request.POST)
     if year_filter_form.is_valid():
-        admission_year = year_filter_form.cleaned_data.get('admission_year')
+        admission_year = year_filter_form.cleaned_data.get('admission_year')    
         if admission_year:
             students = students.filter(admission_date__year=admission_year)
 
@@ -193,3 +196,11 @@ def update_student_third_year(request, student_id):
     }
 
     return render(request, 'student_list/update_student.html', context)
+
+
+@login_required
+def delete_student(request, student_id):
+    student = get_object_or_404(AdmissionForm, id=student_id)
+    student.delete()
+    messages.success(request, 'Student deleted successfully.')
+    return HttpResponseRedirect(reverse('student_list'))  

@@ -16,13 +16,13 @@
         }
 
         th, td {
-            border: 1px solid #ddd;
+            border: 1px solid #f4f4f4;
             padding: 8px;
             text-align: left;
         }
 
         /* Define column widths */
-        .photo-column {
+        /* .photo-column {
             width: 10%;
         }
 
@@ -40,15 +40,21 @@
 
         .aadhar-column {
             width: 15%;
-        }
+        } */
     </style>
 </head>
 <body>
-    <header>
-        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
-        
-    </header>
+        <header>
+            Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </header>
     <div class="container-fluid">
         <div class="sidebar">
             <ul class="dashboard_list">
@@ -64,15 +70,14 @@
             </ul>
         </div>
         <div class="content">
-            <!-- <a href="{% url 'dashboardpage' %}">Dashboard</a>
-            <a href="{% url 'logout' %}?next=/loginapp/logout/" style="float: right;">Logout</a> -->
-            <form method="post" enctype="multipart/form-data">
+            <h1 class="student_heading">Student List</h1>
+            <form method="post" enctype="multipart/form-data" class="admission_filter">
                 {% csrf_token %}
-                {{ year_filter_form.as_p }}
-                {{ class_filter_form.as_p }}
-                <button type="submit" class="apply_filter">Apply Filters</button>
+                <div class="col-sm-5 year_admin">{{ year_filter_form.as_p }}</div>
+                <div class="col-sm-5 admission_batch">{{ class_filter_form.as_p }}</div>
+                <div class="col-sm-2"><button type="submit" class="apply_filter">Apply Filters</button></div>
             </form>
-            <h1>Student List</h1>
+            
             <table class="student_list_tab">
                 <thead>
                     <tr>
@@ -86,12 +91,13 @@
                         <th class="registration-Number"> Registration Number</th>
                         <th>Details</th>
                         <th>Update</th> 
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for student in students %}
                         <tr>
-                            <td class="photo-column"><img src="{{ student.photo.url  }}" alt="{{ student.first_name }} {{ student.last_name }} Photo" width="100"></td>
+                            <td class="photo-column"><img src="{{ student.photo.url  }}" alt="{{ student.first_name }} {{ student.last_name }} Photo" width="50"></td>
                             <td class="name-column">{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</td>
                             <td class="father-name-column">{{ student.father_name }}</td>
                             <td class="mother-name-column">{{ student.mother_name }}</td>
@@ -99,18 +105,15 @@
                             <td class="admission-class-column">{{ student.admission_batch }}</td>
                             <td class="mobile-number-column">{{ student.mobile_number }}</td>
                             <td class="registration-Number">{{student.registration_number}}</td>
-                            <td><a href="{% url 'student_details' student.id %}">Details</a></td>
-                            <td><a href="{% url 'update_student' student.id %}">Update</a></td> 
+                            <td><a href="{% url 'student_details' student.id %}" class="details_btn"><i class="fa fa-info"></i> Details</a></td>
+                            <td><a href="{% url 'update_student' student.id %}" class="update_btn"><i class="fa fa-edit"></i> Update</a></td> 
+                            <td><a href="{% url 'delete_student' student.id %}" class="delete_btn btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-    </div>
-  
-</body>
-</html>
-<!-- Add this at the end of student_list.html -->
+        <!-- Add this at the end of student_list.html -->
 <div class="pagination">
     <span class="step-links">
         {% if students.has_previous %}
@@ -128,3 +131,18 @@
         {% endif %}
     </span>
 </div>
+    </div>
+    <script>
+        document.querySelectorAll('.delete-student-form').forEach(form => {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const studentName = this.dataset.studentName;
+                if (confirm(`Are you sure you want to delete ${studentName}?`)) {
+                    this.submit();
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

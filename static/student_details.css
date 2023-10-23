@@ -4,18 +4,7 @@
     padding: 20px;
 }
 
-button {
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    margin-top: 20px;
-}
 
-button:hover {
-    background-color: #0056b3;
-}
 .chandrika_head{
     text-align: center;
 }
@@ -23,10 +12,20 @@ button:hover {
     border: 2px solid #121111;
     padding: 20px;
     margin: 20px;
-    width: 50%;
+    width: 80%;
     margin: 0 auto;
 }
 .address_college {
     text-align: center;
     font-size: smaller;
+}
+a.back_to_student {
+    position: relative;
+    float: right;
+    right: 16%;
+    background-color: #008080;
+    color: #fff;
+    border-radius: 24px;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
 }

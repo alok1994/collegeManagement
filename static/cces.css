@@ -71,9 +71,16 @@ p.principle_sign img {
 .character_content input {
     margin: 3px 0px;
 }
+a:hover{
+    color: #008080 !important;
+}
+
 
 @media print {
     .static-box {
         width: 100%;
     }
+    .sidebar, button.print_btn, a.back_to_student, header, title {
+        display:none !important;
+     }
 }

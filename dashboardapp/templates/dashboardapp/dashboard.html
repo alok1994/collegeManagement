@@ -33,6 +33,15 @@
                 ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)
             </p>
 
+            <div class="student-count-box"> 
+                Total Students: <span id="totalStudentsCount">X</span>
+            </div>
+
+            <div id="user-count-box" class="user-count-box">
+                Total Users: <span id="user-count">{{ total_users }}</span>
+            </div>
+            
+
             <!-- Your content goes here -->
 
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -82,10 +91,52 @@
                                 aspectRatio: 0.2,
                             },
                         });
-                    })
+
+                        const totalStudents = Object.values(classData).reduce((total, count) => total + count, 0);
+                        const countElement = document.getElementById('totalStudentsCount');
+
+                        let currentCount = 0;
+                        const increment = Math.ceil(totalStudents / 100); // Adjust the speed of animation
+
+                        const updateCount = () => {
+                        currentCount += increment;
+                        if (currentCount >= totalStudents) {
+                            currentCount = totalStudents;
+                            clearInterval(countInterval);
+                        }
+                        countElement.textContent = currentCount;
+                    };
+
+                    const countInterval = setInterval(updateCount, 50); 
+
+                    function sortUserCount() {
+                        const userCount = document.getElementById('user-count');
+                        const originalCount = parseInt(userCount.textContent, 10); // Parse the current count as an integer
+                        let currentCount = originalCount; // Initialize the current count
+
+                        // Function to update the count
+                    function updateCount() {
+                    if (currentCount <= originalCount) {
+                        userCount.textContent = currentCount; // Update the displayed count
+                        currentCount++;
+                    setTimeout(updateCount, 100); // Repeat the update after 100 milliseconds
+                    }
+                }
+
+        updateCount(); // Start the count update
+    }
+
+    // Call the sorting function when the page loads
+    window.addEventListener('load', sortUserCount);
+
+                })
+
+                
+                
                     .catch(error => {
                         console.error('Error fetching student data:', error);
                     });
+            
             </script>
         </div>
     </div>

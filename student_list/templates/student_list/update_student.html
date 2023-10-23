@@ -2,18 +2,46 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Student Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>Update Student Details</h1>
+    <header>
+        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+        
+    </header>
+    <div class="container-fluid">
+        <div class="sidebar">
+            <ul class="dashboard_list">
+                <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
+                <li><a href="{% url 'admission_form' %}"><i class="fa fa-wpforms" aria-hidden="true"></i> Admission Form</a></li>
+                <li><a href="{% url 'student_list' %}"><i class="fa fa-user"></i> Student List</a></li>
+                <li><a href="{% url 'first_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> First Year</a></li>
+                <li><a href="{% url 'second_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Second Year</a></li>
+                <li><a href="{% url 'third_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Third Year</a></li>
+                <li><a href="{% url 'fee_detail' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Management</a></li>
+                <li><a href="{% url 'student_list_details' %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
+                <li><a href="{% url 'student_list_details_transfer' %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1 class="student_heading update_heading">Update Student Details</h1>
     
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }} <!-- Display the form fields as paragraphs -->
-        <button type="submit">Update</button>
-    </form>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }} <!-- Display the form fields as paragraphs -->
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    </div>
     
-    <a href="{% url 'student_list' %}">Back to Student List</a> <!-- Add a link to go back to the student list page -->
+    
+    <!-- <a href="{% url 'student_list' %}">Back to Student List</a> Add a link to go back to the student list page -->
 </body>
 </html>
