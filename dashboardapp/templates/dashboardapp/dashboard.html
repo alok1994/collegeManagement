@@ -3,122 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <title>College Management Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #a3d2d0;
-            color: #9d0808;
-            padding: 10px;
-            text-align: right;
-        }
-        canvas#classChart {
-            width: 850px !important;
-            height: 350px !important;
-        }
-        header a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        ul li {
-            margin-bottom: 10px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
 <body>
     <header>
+        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
-        <p>Welcome {{ user.username }}</p>
+        
     </header>
     <div class="container">
-        <h1>College Management Dashboard</h1>
-        <ul>
-            <li><a href="{% url 'admission_form' %}">Admission Form</a></li>
-            <li><a href="{% url 'student_list' %}" class="btn btn-primary">Student List</a></li>
-            <li><a href="{% url 'first_year' %}">First Year</a></li>
-            <li><a href="{% url 'second_year' %}">Second Year</a></li>
-            <li><a href="{% url 'third_year' %}">Third Year</a></li>
-            <li><a href="{% url 'fee_detail' %}">Fee Management</a></li>
-            <li><a href="{% url 'student_list_details' %}">Character Certificate</a></li>
-            <li><a href="{% url 'student_list_details_transfer' %}">Transfer Certificate</a></li>
-        </ul>
-
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <div>
-            <canvas id="classChart" style="display: block;box-sizing: border-box;height: 300px;width: 400px;"></canvas>
+        <div class="sidebar">
+            <ul class="dashboard_list">
+                <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
+                <li><a href="{% url 'admission_form' %}"><i class="fa fa-wpforms" aria-hidden="true"></i> Admission Form</a></li>
+                <li><a href="{% url 'student_list' %}"><i class="fa fa-user"></i> Student List</a></li>
+                <li><a href="{% url 'first_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> First Year</a></li>
+                <li><a href="{% url 'second_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Second Year</a></li>
+                <li><a href="{% url 'third_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Third Year</a></li>
+                <li><a href="{% url 'fee_detail' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Management</a></li>
+                <li><a href="{% url 'student_list_details' %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
+                <li><a href="{% url 'student_list_details_transfer' %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
+            </ul>
         </div>
-        <script>
-    // Fetch student data from the API endpoint
-    fetch('/admission/student-data-api/')
-        .then(response => response.json())
-        .then(data => {
-            // Process the data and update your chart
-            const classData = {}; // Object to store class data
+        <div class="content">
+            <h1>चंद्रिका प्रसाद महाविद्यालय</h1>
+            <p class="address_college">
+                ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)
+            </p>
 
-            // Process the data and populate classData object
-            data.forEach(student => {
-                const className = student.admission_batch;
-                if (!classData[className]) {
-                    classData[className] = 1;
-                } else {
-                    classData[className]++;
-                }
-            });
+            <!-- Your content goes here -->
 
-            // Create the class chart
-            const classChartCanvas = document.getElementById('classChart').getContext('2d');
-            new Chart(classChartCanvas, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(classData), // Class names
-                    datasets: [{
-                        label: 'Number of Students',
-                        data: Object.values(classData), // Number of students per class
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar color
-                        borderColor: 'rgba(75, 192, 192, 1)', // Border color
-                        borderWidth: 1,
-                    }],
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                        },
-                    },
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    aspectRatio: 0.2,
-                },
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching student data:', error);
-        });
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <div>
+                <canvas id="classChart" style="display: block;box-sizing: border-box;height: 300px;width: 400px;"></canvas>
+            </div>
+            <script>
+                // Fetch student data from the API endpoint
+                fetch('/admission/student-data-api/')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Process the data and update your chart
+                        const classData = {}; // Object to store class data
 
-</script>
+                        // Process the data and populate classData object
+                        data.forEach(student => {
+                            const className = student.admission_batch;
+                            if (!classData[className]) {
+                                classData[className] = 1;
+                            } else {
+                                classData[className]++;
+                            }
+                        });
 
+                        // Create the class chart
+                        const classChartCanvas = document.getElementById('classChart').getContext('2d');
+                        new Chart(classChartCanvas, {
+                            type: 'bar',
+                            data: {
+                                labels: Object.keys(classData), // Class names
+                                datasets: [{
+                                    label: 'Number of Students',
+                                    data: Object.values(classData), // Number of students per class
+                                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar color
+                                    borderColor: 'rgba(75, 192, 192, 1)', // Border color
+                                    borderWidth: 1,
+                                }],
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                    },
+                                },
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                aspectRatio: 0.2,
+                            },
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching student data:', error);
+                    });
+            </script>
+        </div>
     </div>
 </body>
 </html>

@@ -2,7 +2,7 @@ form {
     max-width: 855px;
     margin: 0 auto;
     padding: 20px;
-    border: 2px solid #14faf8;
+    border: 2px solid #008080;
     background-color: #d0e7e8;
     border-radius: 5px;
 }
@@ -20,6 +20,7 @@ label {
 input[type="text"],
 input[type="date"],
 input[type="file"],
+input[type="number"],
 textarea,
 select {
     width: 95%;
@@ -29,6 +30,9 @@ select {
     font-size: 16px;
 }
 
+.form-group textarea {
+    height: 50px;
+}
 /* Style for the submit button */
 .submit-button {
     background-color: #007bff;
@@ -81,83 +85,126 @@ h2 {
     text-align: center;
 }
 
-.form-group-first-name {
-    width: 36%;
-    padding: 10px;
+.form-group-first-name, .form-group-middle-name, .form-group-last-name, .form-group-father-name, .form-group-mother-name, .form-group-date-of-birth, .form-group-admission-batch, .form-group-admission-date, .form-group-caste, .form-group-12th-roll-number, .form-group-10th-roll-number, .form-group-aadhar-number, .form-group-mobile-number
+{
+    margin-bottom: 30px;
     border-radius: 3px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
-.form-group-middle-name {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+h2.admission_form {
+    margin-bottom: 20px;
 }
 
-.form-group-last-name {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+.submit_admission {
+    text-align: center;
 }
-.form-group-father-name {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+
+.sidebar {
+    width: 20%; /* Adjust the width as needed */
+    background-color: #333; /* Sidebar background color */
+    color: #fff;
+    padding: 20px;
+    position: fixed; /* Fixed position */
+    top: 0; /* Stick to the top of the viewport */
+    left: 0; /* Stick to the left side */
+    height: 100%; /* Make it full height */
 }
-.form-group-mother-name {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+ul {
+    list-style-type: none;
+    padding: 0;
 }
-.form-group-date-of-birth {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+
+ul li a {
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #fff; /* Sidebar link color */
 }
-.form-group-admission-batch {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
 }
-.form-group-admission-date {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+
+header {
+    background-color: #008080;
+    color: #fff;
+    padding: 20px 10px;
+    text-align: right;
 }
-.form-group-caste {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+header p {
+    color: #fff;
+    margin: 0;
+    margin-bottom: 10px;
 }
-.form-group-12th-roll-number {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+canvas#classChart {
+    width: 850px !important;
+    height: 350px !important;
 }
-.form-group-10th-roll-number {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
 }
-.form-group-aadhar-number {
-    width: 36%;
-    padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
-.form-group-mobile-number {
-    width: 36%;
+
+.sidebar {
+    width: 15%; /* Adjust the width as needed */
+    background-color: #222d32; /* Sidebar background color */
+    color: #fff;
+    padding: 20px;
+    position: fixed; /* Fixed position */
+    top: 0; /* Stick to the top of the viewport */
+    left: 0; /* Stick to the left side */
+    height: 100%; /* Make it full height */
+}
+
+.content {
+    width: 80%; /* Adjust the width as needed */
+    padding: 20px;
+    position: relative;
+    left: 200px;
+}
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+ul.dashboard_list li {
+    padding: 14px 0px;
+    border-bottom: 1px solid #333;
+}
+ul li a {
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #fff; /* Sidebar link color */
+    font-size: 14px;
+}
+
+.address_college {
+    text-align: center;
+}
+
+ul.dashboard_list li a i {
+    font-size: 15px;
+    padding-right: 20px;
+}
+.apply_filter {
+    background-color: #008080;
     padding: 10px;
-    border-radius: 3px;
-    font-size: 16px;
+    color: #fff;
+    border: 1px solid #008080;
+    border-radius: 25px;
 }
