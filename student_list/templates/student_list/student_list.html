@@ -107,13 +107,22 @@
                             <td class="registration-Number">{{student.registration_number}}</td>
                             <td><a href="{% url 'student_details' student.id %}" class="details_btn"><i class="fa fa-info"></i> Details</a></td>
                             <td><a href="{% url 'update_student' student.id %}" class="update_btn"><i class="fa fa-edit"></i> Update</a></td> 
-                            <td><a href="{% url 'delete_student' student.id %}" class="delete_btn btn btn-danger"><i class="fa fa-trash"></i> Delete</a></td>
+                            <td>
+                                <a href="{% url 'delete_student' student.id %}" class="delete_btn btn btn-danger delete-student"
+                                   data-student-name="{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            </td>                            
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
-        <!-- Add this at the end of student_list.html -->
+        <div class="confirmation-popup" id="confirmationPopup">
+            <p id="confirmationMessage"></p>
+            <button id="confirmButton" class="btn btn-success">OK</button>
+            <button id="cancelButton"  class="btn btn-danger">Cancel</button>
+        </div>
 <div class="pagination">
     <span class="step-links">
         {% if students.has_previous %}
@@ -133,13 +142,24 @@
 </div>
     </div>
     <script>
-        document.querySelectorAll('.delete-student-form').forEach(form => {
-            form.addEventListener('submit', function (event) {
+        document.querySelectorAll('.delete-student').forEach(button => {
+            button.addEventListener('click', function (event) {
                 event.preventDefault();
-                const studentName = this.dataset.studentName;
-                if (confirm(`Are you sure you want to delete ${studentName}?`)) {
-                    this.submit();
-                }
+                const studentName = this.getAttribute('data-student-name');
+                const confirmationMessage = `Are you sure you want to delete ${studentName}?`;
+                
+                document.getElementById('confirmationMessage').textContent = confirmationMessage;
+                document.getElementById('confirmationPopup').style.display = 'block';
+                
+                // Add event listener for the "OK" button
+                document.getElementById('confirmButton').addEventListener('click', function () {
+                    window.location.href = button.href; // Proceed with deletion
+                });
+    
+                // Add event listener for the "Cancel" button
+                document.getElementById('cancelButton').addEventListener('click', function () {
+                    document.getElementById('confirmationPopup').style.display = 'none'; // Close the popup
+                });
             });
         });
     </script>
