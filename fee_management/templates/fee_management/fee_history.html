@@ -1,35 +1,71 @@
-<!-- fee_history.html -->
-<a href="{% url 'fee_detail' %}">Go to Fee Details</a>
-<a href="{% url 'logout' %}?next=/loginapp/logout/" style="float: right;">Logout</a>
-<h2>Fee History for {{ student.first_name }} {{ student.last_name }}</h2>
-
-<table border="1">
-  <thead>
-    <tr>
-      <th>Payment Date</th>
-      <th>Fee For Month</th> <!-- Add a column for the month -->
-      <th>Total Paid Amount</th>
-      <th>Registration Fee</th>
-      <th>Tuition Fee</th>
-      <th>Exam Fee</th>
-      <th>Miscellaneous Fee</th> 
-      <!-- Add more columns as needed for fee history details -->
-    </tr>
-  </thead>
-  <tbody>
-    {% for fee in fee_history %}
-      <tr>
-        <td>{{ fee.payment_date }}</td>
-        <td>{{ fee.fee_for_month }}</td> 
-        <td>{{ fee.total_paid_amount }}</td>
-        <td>{{ fee.registration_fee }}</td>
-        <td>{{ fee.tuition_fee }}</td>
-        <td>{{ fee.exam_fee }}</td>
-        <td>{{fee.miscellaneous_fee }}</td>
-        <!-- Add more columns for other fee history details -->
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-<!-- Add any additional content or formatting as needed -->
+<!DOCTYPE html>
+<head>
+  <title>View Fee History</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/bootstrap.min.js"></script>
+</head>
+<body>
+  <header>
+    Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+  </header>
+  <h2>Fee History {{ student.first_name }} {{ student.middle_name}} {{ student.last_name }}</h2>
+  <div class="container-fluid">
+    <div class="sidebar">
+      <ul class="dashboard_list">
+        <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
+        <li><a href="{% url 'admission_form' %}"><i class="fa fa-wpforms" aria-hidden="true"></i> Admission Form</a></li>
+        <li><a href="{% url 'student_list' %}"><i class="fa fa-user"></i> Student List</a></li>
+        <li><a href="{% url 'first_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> First Year</a></li>
+        <li><a href="{% url 'second_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Second Year</a></li>
+        <li><a href="{% url 'third_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Third Year</a></li>
+        <li><a href="{% url 'fee_detail' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Management</a></li>
+        <li><a href="{% url 'student_list_details' %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
+        <li><a href="{% url 'student_list_details_transfer' %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
+      </ul>
+    </div>
+    <div class="content">
+      <table border="1">
+        <thead>
+          <tr>
+            <th>Payment Date</th>
+            <th>Fee For Month</th> <!-- Add a column for the month -->
+            <th>Total Paid Amount</th>
+            <th>Registration Fee</th>
+            <th>Tuition Fee</th>
+            <th>Exam Fee</th>
+            <th>Miscellaneous Fee</th> 
+            <!-- Add more columns as needed for fee history details -->
+          </tr>
+        </thead>
+        <tbody>
+          {% for fee in fee_history %}
+            <tr>
+              <td>{{ fee.payment_date }}</td>
+              <td>{{ fee.fee_for_month }}</td> 
+              <td>{{ fee.total_paid_amount }}</td>
+              <td>{{ fee.registration_fee }}</td>
+              <td>{{ fee.tuition_fee }}</td>
+              <td>{{ fee.exam_fee }}</td>
+              <td>{{fee.miscellaneous_fee }}</td>
+              <!-- Add more columns for other fee history details -->
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> 
+</body>
+</html>

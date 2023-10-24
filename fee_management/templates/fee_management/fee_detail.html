@@ -1,12 +1,16 @@
 <!-- fee_management/templates/fee_management/fee_detail.html -->
 
 <!DOCTYPE html>
-<a href="{% url 'dashboardpage' %}">Go to Dashboard</a>
-<a href="{% url 'logout' %}?next=/loginapp/logout/" style="float: right;">Logout</a>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Student Fee Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
     <style>
         table {
             width: 100%;
@@ -23,63 +27,90 @@
     </style>
 </head>
 <body>
+    <header>
+        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </header>
     <h2>Student Fee Details</h2>
-
-    <!-- Filter dropdown for selecting a class -->
-    <form method="get">
-        <label for="class_filter">Filter by Class:</label>
-        <select id="class_filter" name="class_filter">
-            <option value="">All</option>
-            {% for choice in class_choices %}
-            <option value="{{ choice }}" {% if choice == selected_class %}selected{% endif %}>{{ choice }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Filter</button>
-    </form>
-
-    {% if class_students %}
-    <h2>Students:</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Father Name</th>
-                <th>Mother Name</th>
-                <th>Add Fee</th>
-                <th>Check fee History</th>
-                <!-- Add more table headers as needed -->
-            </tr>
-        </thead>    
-        <tbody>
-            {% for student in class_students %}
-            <tr>
-                <td>{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }} </td>
-                <td>{{ student.father_name }}</td>
-                <td>{{ student.mother_name }}</td>
-                <td><a href="{% url 'fee_submission' student.id %}">Submit Fee</a></td>
-                <td><a href="{% url 'fee_history' student.id %}">View Fee History</a></td>                
-                <!-- Add more student details here -->
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <p>No students found.</p>
-    {% endif %}
+    <div class="container-fluid">
+        <div class="sidebar">
+            <ul class="dashboard_list">
+                <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
+                <li><a href="{% url 'admission_form' %}"><i class="fa fa-wpforms" aria-hidden="true"></i> Admission Form</a></li>
+                <li><a href="{% url 'student_list' %}"><i class="fa fa-user"></i> Student List</a></li>
+                <li><a href="{% url 'first_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> First Year</a></li>
+                <li><a href="{% url 'second_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Second Year</a></li>
+                <li><a href="{% url 'third_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Third Year</a></li>
+                <li><a href="{% url 'fee_detail' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Management</a></li>
+                <li><a href="{% url 'student_list_details' %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
+                <li><a href="{% url 'student_list_details_transfer' %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <form method="get">
+                <label for="class_filter">Filter by Class:</label>
+                <select id="class_filter" name="class_filter">
+                    <option value="">All</option>
+                    {% for choice in class_choices %}
+                    <option value="{{ choice }}" {% if choice == selected_class %}selected{% endif %}>{{ choice }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Filter</button>
+            </form>
+        
+            {% if class_students %}
+            <h2>Students:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Father Name</th>
+                        <th>Mother Name</th>
+                        <th>Add Fee</th>
+                        <th>Check fee History</th>
+                        <!-- Add more table headers as needed -->
+                    </tr>
+                </thead>    
+                <tbody>
+                    {% for student in class_students %}
+                    <tr>
+                        <td>{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }} </td>
+                        <td>{{ student.father_name }}</td>
+                        <td>{{ student.mother_name }}</td>
+                        <td><a href="{% url 'fee_submission' student.id %}">Submit Fee</a></td>
+                        <td><a href="{% url 'fee_history' student.id %}">View Fee History</a></td>                
+                        <!-- Add more student details here -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p>No students found.</p>
+            {% endif %}
+            <div class="pagination">
+                <span class="step-links">
+                    {% if class_students.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ class_students.previous_page_number }}">previous</a>
+                    {% endif %}
+                    
+                    <span class="current-page">{{ class_students.number }} / {{ class_students.paginator.num_pages }}</span>
+                    
+                    {% if class_students.has_next %}
+                        <a href="?page={{ class_students.next_page_number }}">next</a>
+                        <a href="?page={{ class_students.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div> 
 </body>
 </html>
-<div class="pagination">
-    <span class="step-links">
-        {% if class_students.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ class_students.previous_page_number }}">previous</a>
-        {% endif %}
-        
-        <span class="current-page">{{ class_students.number }} / {{ class_students.paginator.num_pages }}</span>
-        
-        {% if class_students.has_next %}
-            <a href="?page={{ class_students.next_page_number }}">next</a>
-            <a href="?page={{ class_students.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+
