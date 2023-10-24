@@ -67,6 +67,7 @@
                 <li><a href="{% url 'fee_detail' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Management</a></li>
                 <li><a href="{% url 'student_list_details' %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
                 <li><a href="{% url 'student_list_details_transfer' %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
+                <li><a href="{% url 'fee_structure' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Structure</a></li>
             </ul>
         </div>
         <div class="content">
@@ -112,7 +113,7 @@
                                    data-student-name="{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}">
                                     <i class="fa fa-trash"></i> Delete
                                 </a>
-                            </td>                            
+                            </td>                          
                         </tr>
                     {% endfor %}
                 </tbody>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'student_list',
     'chartjs',
     'fee_management',
+    'fee_structure',
     'transfer_certificate',
     'character_certificate',
     'django.contrib.admin',
