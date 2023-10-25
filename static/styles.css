@@ -351,4 +351,24 @@ a:hover{
         text-align: center;
         border-radius: 5px
     }
+    /* Style for the fee structure table */
+    table.fee-structure {
+        margin-left: 60px;
+        height: 60px;
+    }
+
+    table.fee-structure tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    table.fee-structure tr:hover {
+        box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0.075);
+    }
+
+    table.fee-structure th,
+    table.fee-structure td {
+        font-size: 12px;
+        text-transform: capitalize;
+    }
+    
 

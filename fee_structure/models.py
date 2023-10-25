@@ -6,6 +6,7 @@ class Semester(models.Model):
     exam_fee = models.DecimalField(max_digits=10, decimal_places=2)
     sport_fee = models.DecimalField(max_digits=10, decimal_places=2)
     miscellaneous_fee = models.DecimalField(max_digits=10, decimal_places=2)
+    semester_total =  models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return f'Semester {self.semester_number}'

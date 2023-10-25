@@ -30,29 +30,31 @@
         </div>
         <div class="content">
             <h1>Fee Structure</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Semester</th>
-          <th>Tuition Fee</th>
-          <th>Exam Fee</th>
-          <th>Sports Fee</th>
-          <th>Miscellaneous Fee</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for semester in semesters %}
-          <tr>
-            <td>Semester {{ semester.semester_number }}</td>
-            <td>{{ semester.tuition_fee }}</td>
-            <td>{{ semester.exam_fee }}</td>
-            <td>{{ semester.sport_fee }}</td>
-            <td>{{ semester.miscellaneous_fee }}</td>
-            <td><a href="{% url 'update_semester_fee' semester.semester_number %}">Update</a></td>
-          </tr>
-        {% endfor %}
-      </tbody>
+            <table class="fee-structure">
+              <thead>
+                <tr>
+                  <th>Semester</th>
+                  <th>Tuition Fee</th>
+                  <th>Exam Fee</th>
+                  <th>Sports Fee</th>
+                  <th>Miscellaneous Fee</th>
+                  <th>Semester Total Fee </th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+            <tbody>
+              {% for semester in semesters %}
+                <tr>
+                  <td>Semester {{ semester.semester_number }}</td>
+                  <td>{{ semester.tuition_fee }}</td>
+                  <td>{{ semester.exam_fee }}</td>
+                  <td>{{ semester.sport_fee }}</td>
+                  <td>{{ semester.miscellaneous_fee }}</td>
+                  <td>{{ semester.semester_total }}</td>
+                  <td><a href="{% url 'update_semester_fee' semester.semester_number %}" class="update_btn"><i class="fa fa-edit"></i>Update</a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
     </table>
 
         </div>
