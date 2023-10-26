@@ -56,10 +56,10 @@
         </div>
         <div class="content">
             <form method="get">
-                <label for="class_filter">Filter by Class:</label>
+                <label for="class_filter">Filter by Semester:</label>
                 <select id="class_filter" name="class_filter">
                     <option value="">All</option>
-                    {% for choice in class_choices %}
+                    {% for choice in semester_choices %}
                     <option value="{{ choice }}" {% if choice == selected_class %}selected{% endif %}>{{ choice }}</option>
                     {% endfor %}
                 </select>

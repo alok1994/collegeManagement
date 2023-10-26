@@ -13,15 +13,16 @@ from django.db.models import Sum
 
 @login_required
 def fee_detail(request):
-    # Get a list of distinct class values from the Student model
-    class_choices = AdmissionForm.objects.values_list('admission_batch', flat=True).distinct()
+    # Get a list of distinct semester values from the Student model
+    semester_choices = AdmissionForm.objects.values_list('current_semester', flat=True).distinct()
+
     # Get the selected class from the query parameter
     
     selected_class = request.GET.get('class_filter') 
 
     # Filter fees based on the selected class (if provided)
     if selected_class:
-        class_students = AdmissionForm.objects.filter(admission_batch=selected_class)
+        class_students = AdmissionForm.objects.filter(current_semester=selected_class)
     else:
         class_students = AdmissionForm.objects.all()
 
@@ -35,7 +36,7 @@ def fee_detail(request):
     for student in class_students:
         student_id = student.id
 
-    return render(request, 'fee_management/fee_detail.html', {'class_students': class_students, 'class_choices': class_choices, 'selected_class': selected_class,})
+    return render(request, 'fee_management/fee_detail.html', {'class_students': class_students, 'semester_choices': semester_choices, 'selected_class': selected_class,})
 
 
 @login_required
