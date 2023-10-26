@@ -9,6 +9,7 @@
   <script src="/static/bootstrap.min.js"></script>
 </head>
 <body>
+  {% load custom_filters %}
   <header>
     Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
@@ -39,32 +40,41 @@
     <div class="content">
       <table border="1">
         <thead>
-          <tr>
-            <th>Payment Date</th>
-            <th>Fee For Month</th> <!-- Add a column for the month -->
-            <th>Total Paid Amount</th>
-            <th>Registration Fee</th>
-            <th>Tuition Fee</th>
-            <th>Exam Fee</th>
-            <th>Miscellaneous Fee</th> 
-            <!-- Add more columns as needed for fee history details -->
-          </tr>
+            <tr>
+                <th>Payment Date</th>
+                <th>Semester</th>
+                <th>Registration Fee</th>
+                <th>Tuition Fee</th>
+                <th>Exam Fee</th>
+                <th>Miscellaneous Fee</th>
+                <th>Late Fee </th>
+                <th>Discount Fee </th>
+                <th>Total Semester Fee</th>
+                <th>Total Paid Amount</th>
+                <th>Remaining Amount</th>
+                <th>Comments</th>
+            </tr>
         </thead>
         <tbody>
-          {% for fee in fee_history %}
-            <tr>
-              <td>{{ fee.payment_date }}</td>
-              <td>{{ fee.fee_for_month }}</td> 
-              <td>{{ fee.total_paid_amount }}</td>
-              <td>{{ fee.registration_fee }}</td>
-              <td>{{ fee.tuition_fee }}</td>
-              <td>{{ fee.exam_fee }}</td>
-              <td>{{fee.miscellaneous_fee }}</td>
-              <!-- Add more columns for other fee history details -->
-            </tr>
-          {% endfor %}
+            {% for fee in fee_history %}
+                <tr>
+                    <td>{{ fee.payment_date }}</td>
+                    <td>Semester {{ fee.semester }}</td>
+                    <td>{{ fee.registration_fee }}</td>
+                    <td>{{ fee.tuition_fee }}</td>
+                    <td>{{ fee.exam_fee }}</td>
+                    <td>{{ fee.miscellaneous_fee }}</td>
+                    <td>{{ fee.late_fee }}</td>
+                    <td>{{ fee.discount_fee }}</td>
+                    <td>{{ fee.total_semester_fee }}</td>
+                    <td>{{ fee.total_paid_amount }}</td>
+                    <td>{{ fee.remaining_amount }}</td>
+                    <td>{{fee.comments}}</td>
+                </tr>
+            {% endfor %}
         </tbody>
-      </table>
+    </table>
+    
     </div>
   </div>
 </div> 

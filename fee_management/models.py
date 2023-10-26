@@ -12,6 +12,12 @@ class Fee(models.Model):
     receipt_number = models.CharField(max_length=20)
     total_paid_amount =  models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     total_amount_in_words = models.CharField(max_length=10000)
+    semester = models.CharField(max_length=255)
+    late_fee = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    discount_fee = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    remaining_amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    total_semester_fee = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    comments = models.CharField(max_length=1000)
 
     def __str__(self):
         return f"Receipt #{self.receipt_number} - {self.student.first_name} - {self.fee_for_month}"

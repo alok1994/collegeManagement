@@ -47,14 +47,13 @@
             <div class="section">
                 <p><b>Student Name:</b> {{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</p>
                 <p><b>Father Name:</b> {{ student.father_name }}</p>
-                <p><b>Class:</b> BA{{ student.admission_batch }} Year</p>
+                <p><b>Admission Class:</b> BA {{ student.admission_batch }} Year</p>
             </div>
             <div class="section">
                 <form method="post" id="fee-submission-form">
                     {% csrf_token %}
                     <div>
-                        <label for="fee_for_month"><b>Fee For Month:</b></label>
-                        <input type="text" name="fee_for_month" id="fee_for_month">
+                        <p> <b>Current Semester:</b> Semester {{ student.current_semester }}</p>
                     </div>
                     <div>
                         <label for="payment_date"><b>Payment Date:</b></label>
@@ -97,13 +96,22 @@
                             <td>Miscellaneous Fee</td>
                             <td><input type="number" step="0.01" name="miscellaneous_fee" id="miscellaneous_fee"></td>
                         </tr>
-                        <!-- Add more fee particulars as needed -->
                     </tbody>
                 </table>
+                <tr>
+                    <td>Late Fee</td>
+                    <td><input type="number" step="0.01" name="late_fee" id="late_fee"></td>
+                </tr>
+
+                <tr>
+                    <td>Discount on Fee</td>
+                    <td><input type="number" step="0.01" name="discount_fee" id="discount_fee"></td>
+                </tr>
+
                 <div class="section">
                     <button type="submit">Submit</button>
                 </div>
-            </div>
+        </form>
     </div>
     </body>
 </html>

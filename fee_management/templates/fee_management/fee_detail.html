@@ -74,9 +74,9 @@
                         <th>Name</th>
                         <th>Father Name</th>
                         <th>Mother Name</th>
+                        <th>Current Semester</th>
                         <th>Add Fee</th>
                         <th>Check fee History</th>
-                        <!-- Add more table headers as needed -->
                     </tr>
                 </thead>    
                 <tbody>
@@ -85,9 +85,10 @@
                         <td>{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }} </td>
                         <td>{{ student.father_name }}</td>
                         <td>{{ student.mother_name }}</td>
+                        <td>Semester {{ student.current_semester }}</td>
                         <td><a href="{% url 'fee_submission' student.id %}">Submit Fee</a></td>
                         <td><a href="{% url 'fee_history' student.id %}">View Fee History</a></td>                
-                        <!-- Add more student details here -->
+                        
                     </tr>
                     {% endfor %}
                 </tbody>
