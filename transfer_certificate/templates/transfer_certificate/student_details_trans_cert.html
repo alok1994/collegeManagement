@@ -51,7 +51,8 @@
 
             <!-- Filter dropdown for selecting a class -->
             <div class="col-sm-6">
-                <form method="get" class="transfer_cer_filter">
+                <form method="get" class="transfer_cer_filter admission_filter">
+                    <div class="col-sm-8 year_admin">
                     <label for="class_filter">Filter by Class:</label>
                     <select id="class_filter" name="class_filter">
                         <option value="">All</option>
@@ -59,13 +60,14 @@
                         <option value="{{ choice }}" {% if choice == selected_class %}selected{% endif %}>{{ choice }}</option>
                         {% endfor %}
                     </select>
-                    <button type="submit">Filter</button>
+                    </div>
+                    <div class="col-sm-4"><button type="submit" class="apply_filter">Filter</button></div>
                 </form>
             </div>
             
             <br>
             {% if class_students %}
-            <table>
+            <table class="student_list_tab">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -82,7 +84,7 @@
                         <td>{{ student.father_name }}</td>
                         <td>{{ student.mother_name }}</td>
                         <td>
-                            <a href="{% url 'view_transfer_certificate' student.id %}">Generate Transfer Certificate</a>
+                            <a href="{% url 'view_transfer_certificate' student.id %}" class="details_btn">Generate Transfer Certificate</a>
                         </td>                
                         <!-- Add more student details here -->
                     </tr>
@@ -93,22 +95,23 @@
             <p>No students found.</p>
             {% endif %}
         </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if class_students.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ class_students.previous_page_number }}">previous</a>
+                {% endif %}
+                
+                <span class="current-page">{{ class_students.number }} / {{ class_students.paginator.num_pages }}</span>
+                
+                {% if class_students.has_next %}
+                    <a href="?page={{ class_students.next_page_number }}">next</a>
+                    <a href="?page={{ class_students.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        
     </div>
     
 </body>
 </html>
-<div class="pagination">
-    <span class="step-links">
-        {% if class_students.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ class_students.previous_page_number }}">previous</a>
-        {% endif %}
-        
-        <span class="current-page">{{ class_students.number }} / {{ class_students.paginator.num_pages }}</span>
-        
-        {% if class_students.has_next %}
-            <a href="?page={{ class_students.next_page_number }}">next</a>
-            <a href="?page={{ class_students.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>

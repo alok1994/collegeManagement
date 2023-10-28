@@ -7,7 +7,7 @@ from django.http import JsonResponse
 def admission_form(request):
     if request.method == 'POST':
         form = AdmissionFormForm(request.POST, request.FILES)
-        #import pdb;pdb.set_trace()
+       
         if form.is_valid():
             photo = request.FILES['photo']
             print(f'Uploaded file name: {photo.name}')
@@ -43,6 +43,6 @@ def student_data_api(request):
         }
         for student in students
     ]
-    print(student_data)
+
     # Return the JSON response
     return JsonResponse(student_data, safe=False)

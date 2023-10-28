@@ -33,10 +33,14 @@
         <div class="content">
             <h1 class="student_heading update_heading">Update Student Details</h1>
     
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data" class="admission_form">
                 {% csrf_token %}
                 {{ form.as_p }} <!-- Display the form fields as paragraphs -->
-                <button type="submit">Update</button>
+                <div class="col-sm-12 submit_admission">
+                    <button type="submit" class="submit-button">Update</button>
+                </div>
+                <div class="clearfix"></div>
+                <!-- <button type="submit">Update</button> -->
             </form>
         </div>
     </div>

@@ -29,30 +29,17 @@ p.principle_class {
     padding: 1px;
     text-align: center;
     width: 50%;
-    margin: 0 auto;
+    display: inline-block;
+    margin-top: 10px;
 }
 p.kramank-date {
     margin-right: 10px; 
 }
 .static-box {
-    border: 1px solid #000;
-    padding: 20px;
-    width: 60%;
     display: inline-block;
+    margin-left: 100px !important;
 } 
-.static-box {
-    border: 1px solid #000;
-    padding: 20px;
-    width: 50%;
-}
 
-.combined-info {
-    display: inline-block;
-}
-
-.college-code, .sub-heading {
-    display: inline;
-}
 .character_cer {
     text-align: center;
 }
@@ -61,7 +48,7 @@ p.date_input {
     padding-top: 10px;
 }
 p.principle_sign img {
-    width: 250px;
+    width: 150px;
     float: right;
 }
 .character_content {

@@ -69,7 +69,7 @@ def update_student(request, student_id):
 @login_required
 def first_year(request):
     first_year_students = AdmissionForm.objects.filter(admission_batch='1')
-    print(first_year_students)
+   
     # Apply filters if provided in the GET request
     year_filter_form = AdmissionYearFilterForm(request.GET)
     if year_filter_form.is_valid():

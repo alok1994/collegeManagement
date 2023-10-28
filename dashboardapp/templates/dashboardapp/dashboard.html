@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
 </head>
 <body>
     <header>
@@ -33,15 +36,16 @@
             <p class="address_college">
                 ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)
             </p>
-
+            <div class="col-sm-6">
             <div class="student-count-box"> 
                 Total Students: <span id="totalStudentsCount">X</span>
             </div>
-
+            </div>
+            <div class="col-sm-6">
             <div id="user-count-box" class="user-count-box">
                 Total Users: <span id="user-count">{{ total_users }}</span>
             </div>
-            
+        </div>
 
             <!-- Your content goes here -->
 

@@ -1,90 +1,125 @@
 <!DOCTYPE html>
 <html>
-  <a href="{% url 'fee_detail' %}">Back to Fee Details</a>
 <head>
-    <title>Receipt for Fee Submission</title>
-    <link rel="stylesheet" type="text/css" href="/static/fee_management.css">
+        <title>Receipt for Fee Submission</title>
+        <link rel="stylesheet" type="text/css" href="/static/fee_submission.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/static/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/bootstrap.min.css">
+        <script src="/static/jquery.min.js"></script>
+        <script src="/static/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/fee_management.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h3>चंद्रिका प्रसाद महाविद्यालय</h3>
-        </div>
-        <div class="student-details">
-            <p><b>Student Name:</b> {{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</p>
-            <p><b>Father Name:</b> {{ student.father_name }}</p>
-            <p><b>Class:</b> BA {{ student.admission_batch }} Year</p>
-            <p><b>Date of Payment:</b> {{ fee.payment_date }}</p>
-            <p><b>Fee Month:</b> {{ fee.fee_for_month }}</p>
-            <p><b>Receipt Number:</b> {{ fee.receipt_number }}</p>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>S N</th>
-                    <th>Particulars</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Registration Fee</td>
-                    <td>{{ fee.registration_fee }}</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Tuition Fee</td>
-                    <td>{{ fee.tuition_fee }}</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Exam Fee</td>
-                    <td>{{ fee.exam_fee }}</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Sports Fee</td>
-                    <td>{{ fee.sports_fee }}</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Miscellaneous Fee</td>
-                    <td>{{ fee.miscellaneous_fee }}</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Late Fee</td>
-                    <td>{{ fee.late_fee }}</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Discount Fee</td>
-                    <td>{{ fee.discount_fee }}</td>
-                </tr>
-                <!-- Add more fee particulars as needed -->
-            </tbody>
-        </table>
-        <div class="total-section">
-            <p><b>Total Amount:</b> ₹{{ fee.total_paid_amount }} </p>
-            <p><b>Total Amount In Words: </b> {{ fee.total_amount_in_words }} Rupees Only </p>
-        </div>
-        <div class="footer">
-            <div class="signature-block">
-                <div class="student-signature">
-                    <p>Student's Signature</p>
-                    <!-- Add space for the student's signature -->
-                </div>
-                <div class="receiver-signature">
-                    <p>Receiver's Signature</p>
-                    <!-- Add space for the receiver's signature -->
-                </div>
-            </div>
-            <button id="print-button">Print Receipt</button>
-        </div>
+    <header>
+        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </header>
+    <div class="container-fluid">
+        <div class="sidebar">
+            <ul class="dashboard_list">
+              <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
+              <li><a href="{% url 'admission_form' %}"><i class="fa fa-wpforms" aria-hidden="true"></i> Admission Form</a></li>
+              <li><a href="{% url 'student_list' %}"><i class="fa fa-user"></i> Student List</a></li>
+              <li><a href="{% url 'first_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> First Year</a></li>
+              <li><a href="{% url 'second_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Second Year</a></li>
+              <li><a href="{% url 'third_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Third Year</a></li>
+              <li><a href="{% url 'fee_detail' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Management</a></li>
+              <li><a href="{% url 'student_list_details' %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
+              <li><a href="{% url 'student_list_details_transfer' %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
+              <li><a href="{% url 'fee_structure' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Structure</a></li>
+            </ul>
+          </div>
     </div>
-
-    <!-- Include jQuery for the print button functionality -->
+    <div class="content">
+        <div class="container">
+            <div class="header">
+                <h3>चंद्रिका प्रसाद महाविद्यालय</h3>
+                <p>ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)</p>
+            </div>
+            <div class="student-details">
+                <p><b>Student Name:</b> {{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</p>
+                <p><b>Father Name:</b> {{ student.father_name }}</p>
+                <p><b>Class:</b> BA {{ student.admission_batch }} Year</p>
+                <p><b>Date of Payment:</b> {{ fee.payment_date }}</p>
+                <p><b>Fee Month:</b> {{ fee.fee_for_month }}</p>
+                <p><b>Receipt Number:</b> {{ fee.receipt_number }}</p>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>S N</th>
+                        <th>Particulars</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Registration Fee</td>
+                        <td>{{ fee.registration_fee }}</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Tuition Fee</td>
+                        <td>{{ fee.tuition_fee }}</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Exam Fee</td>
+                        <td>{{ fee.exam_fee }}</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Sports Fee</td>
+                        <td>{{ fee.sports_fee }}</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Miscellaneous Fee</td>
+                        <td>{{ fee.miscellaneous_fee }}</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Late Fee</td>
+                        <td>{{ fee.late_fee }}</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Discount Fee</td>
+                        <td>{{ fee.discount_fee }}</td>
+                    </tr>
+                    <!-- Add more fee particulars as needed -->
+                </tbody>
+            </table>
+            <div class="total-section">
+                <p><b>Total Amount:</b> ₹{{ fee.total_paid_amount }} </p>
+                <p><b>Total Amount In Words: </b> {{ fee.total_amount_in_words }} Rupees Only </p>
+            </div>
+            <div class="footer">
+                <div class="signature-block">
+                    <div class="student-signature">
+                        <p>Student's Signature</p>
+                        <!-- Add space for the student's signature -->
+                    </div>
+                    <div class="receiver-signature">
+                        <p>Receiver's Signature</p>
+                        <!-- Add space for the receiver's signature -->
+                    </div>
+                </div>
+                <button id="print-button">Print Receipt</button>
+            </div>
+        </div>    
+    </div>
+        <!-- Include jQuery for the print button functionality -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Add the JavaScript code to handle the Print button click -->
     <script>

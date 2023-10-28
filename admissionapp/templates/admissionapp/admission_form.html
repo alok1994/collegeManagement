@@ -17,7 +17,7 @@
         <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
         
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <div class="sidebar">
             <ul class="dashboard_list">
                 <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
@@ -34,7 +34,7 @@
         </div>
 
         <div class="content">
-            <h2 class="admission_form">Admission Form</h2>
+            <h2 class="student_heading">Admission Form</h2>
 
             <form method="POST" enctype="multipart/form-data" class="admission_form">
                 {% csrf_token %}

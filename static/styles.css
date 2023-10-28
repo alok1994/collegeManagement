@@ -11,6 +11,17 @@ form.admission_form {
     margin-bottom: 15px;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #f4f4f4;
+    padding: 8px !important;
+    text-align: left !important;
+}
+ 
 label {
     display: block;
     font-weight: bold;
@@ -139,7 +150,7 @@ header p {
     margin-bottom: 10px;
 }
 canvas#classChart {
-    width: 850px !important;
+    /* width: 850px !important; */
     height: 350px !important;
 }
 
@@ -245,6 +256,7 @@ a.update_btn {
     text-align: center;
     margin: 30px auto;
     padding-bottom: 2px;
+    font-size: 26px;
 }
 .student_heading.update_heading {
     width: 40%;
@@ -264,6 +276,7 @@ form.admission_filter {
     margin-left: 38px;
     margin: 0px 0px 18px 38px;
     display: inline-block;
+    width: 100%;
 }
 a.delete_btn {
     padding: 3px;
@@ -271,11 +284,14 @@ a.delete_btn {
 }
 
 a:hover{
-    color: #008080 !important;
+    color: #ffffff !important;
 }
 .trans_cer input {
     margin: 10px 0px;
+    width: 200px;
+    height: 30px;
 }
+
 .print_btn {
     background-color: #008080;
     color: #fff;
@@ -283,38 +299,12 @@ a:hover{
     padding: 10px 20px;
     cursor: pointer;
     margin-top: 20px;
-    position: relative;
-    left: 18%;
+    float: right;
+    margin-right: 100px;
     border-radius: 24px;
     letter-spacing: 0.5px;
 }
-@media print {
-    .sidebar, button.print_btn, a.back_to_student, header, title{
-       display:none !important;
-    }
-    .content {
-        width: 100%;
-        left: 0px;
-    }
-    .complete_form {
-        width: 100%;
-    }
-    .student-count-box {
-        background-color: #4caf50; /* Green Color */
-        color: #0c0a0a; /* White Text */
-        padding: 10px;
-        border-radius: 10px;
-        text-align: center;
-    }
-    }
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-    
-    
-    .chandrika_head{
+.chandrika_head{
         text-align: center;
     }
     .complete_form {
@@ -370,5 +360,49 @@ a:hover{
         font-size: 12px;
         text-transform: capitalize;
     }
-    
-
+    .student-count-box, #user-count-box {
+        margin: 30px 0px;
+        padding: 40px;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 0.5px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+    div#user-count-box {
+        background-color: #3c8dbc;
+    }
+    .student-count-box {
+        background-color: #d9534f;
+    }
+    .submit_admission {
+        margin: 20px 0px;
+    }
+    .college_logo {
+        float: left;
+    }
+    @media print {
+        .sidebar, button.print_btn, a.back_to_student, header, title{
+           display:none !important;
+        }
+        .content {
+            width: 100%;
+            left: 0px;
+        }
+        .complete_form {
+            width: 100%;
+        }
+        .student-count-box {
+            background-color: #4caf50; /* Green Color */
+            color: #0c0a0a; /* White Text */
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .trans_cer {
+            width: 100% !important;
+        }
+        .static-box {
+            margin-left: 0px !important;
+        }
+        }

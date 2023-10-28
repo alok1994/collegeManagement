@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
   <title>View Fee History</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,7 +53,7 @@
                 <th>Total Semester Fee</th>
                 <th>Total Paid Amount</th>
                 <th>Remaining Amount</th>
-                <th>Comments</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -69,13 +70,32 @@
                     <td>{{ fee.total_semester_fee }}</td>
                     <td>{{ fee.total_paid_amount }}</td>
                     <td>{{ fee.remaining_amount }}</td>
-                    <td>{{fee.comments}}</td>
+                    <td>
+                      <button class="send-message-button" data-student="{{ student.id }}" data-amount="{{ fee.remaining_amount }}">
+                          Send Message
+                      </button>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-    
     </div>
+    <script>
+      $(document).ready(function () {
+    // Attach a click event handler to the "Send Message" button
+    $('.send-message-button').click(function () {
+        var studentId = $(this).data('student');
+        var remainingAmount = $(this).data('amount');
+        // Prompt the user to confirm the message
+        var confirmation = confirm("Send a message to Student " + studentId + " with a remaining amount of " + remainingAmount + "?");
+        if (confirmation) {
+            // Use Django's URL reversing to generate the correct URL
+            var url = "{% url 'send_message' 0 0 %}".replace("0", studentId).replace("0", remainingAmount);
+            window.location.href = url;
+        }
+    });
+});
+  </script>
   </div>
 </div> 
 </body>

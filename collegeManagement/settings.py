@@ -163,3 +163,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+TWILIO_ACCOUNT_SID = 'adasdad'
+TWILIO_AUTH_TOKEN = 'adadas'

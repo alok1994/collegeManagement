@@ -4,65 +4,93 @@
     <meta charset="UTF-8">
     <title>प्रमाणपत्र</title>
     <link rel="stylesheet" type="text/css" href="/static/cces.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <script src="/static/jquery.min.js"></script>
     <script src="/static/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" type="text/css" href="/static/tces.css">
 </head>
 <body>
-    <div class="container charac_cert">
-        <div class="static-box">
-          <div class="col-sm-3">
-            <p class="combined-info">
-                <span class="college-code">कॉलेज कोड: 0574</span>
-            </p>
-          </div>
-          <div class="character_cer col-sm-9">
-                <span class="sub-heading">दीनदयाल उपाध्याय गोरखपुर विश्वविद्यालय, गोरखपुर से संबद्ध</span>
-                <h1 class="center-text">चंद्रिका प्रसाद महाविद्यालय</h1> 
-                <p class="address_college">ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)</p>
-                <h3 class="charac_cert_center_text">चरित्र प्रमाण पत्र</h3>
-                
-          </div> 
-          <div class="clearfix"></div>
-          <div class="col-sm-3">
-            <p class="date_numner">क्रमांक............. </p>
-          </div>
-
-        <div class="col-sm-9">
-        <p class="date_input"> दिनांक: <input type="text" name="today_date" value=""></p>
+    <header>
+        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>    
+    </header>
+    <div class="container-fluid charac_cert">
+        <div class="sidebar">
+            <ul class="dashboard_list">
+                <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
+                <li><a href="{% url 'admission_form' %}"><i class="fa fa-wpforms" aria-hidden="true"></i> Admission Form</a></li>
+                <li><a href="{% url 'student_list' %}"><i class="fa fa-user"></i> Student List</a></li>
+                <li><a href="{% url 'first_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> First Year</a></li>
+                <li><a href="{% url 'second_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Second Year</a></li>
+                <li><a href="{% url 'third_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Third Year</a></li>
+                <li><a href="{% url 'fee_detail' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Management</a></li>
+                <li><a href="{% url 'student_list_details' %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
+                <li><a href="{% url 'student_list_details_transfer' %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
+                <li><a href="{% url 'fee_structure' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Structure</a></li>
+            </ul>
         </div>
-        <div class="clearfix"></div>
-        <div class="col-sm-12">
-            <div class="character_content">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;प्रमाणित किया जाता है कि श्री/कु0/श्रीमती {{ admission_form.first_name }} {{ admission_form.middle_name }} {{ admission_form.last_name }}
-                पुत्र/पुत्री/पत्नी श्री  {{ admission_form.father_name }} पता {{ admission_form.address }} |
-                इस विद्यालय के छात्र/छात्रा रहे हैं |
-                यह इस महाविद्यालय में कक्षा B A {{ admission_form.admission_batch}} Year के सत्र <input type="text" name="admission_year" value=" "> से <input type="text" name="exit_year" value=" ">
-                तक संस्थागत छात्र/छात्रा रहे हैं |
-                इन्होने सत्र <input type="text" name="exam_year" value=" "> में इस संस्था से कक्षा BA <input type="text" name="exam_batch" value=" "> Year की परीक्षा <input type="text" name="exam_grade" value=" ">
-                श्रेष्ठी में उत्तीरण/अनुत्तीरण किया | जहाँ तक मुझे ज्ञात है इनका चरित्र उत्तम है|<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;मैं जीवन में हर दृष्टि से इनकी सफलता की कामना करता है |
-            </div>
-            <div class="col-sm-6">
-                <p class="lipik_class">
-                    ह0 कार्यालय लिपिक
-                </p>
-            </div>
-            <div class="col-sm-6">
-                <p class="principle_class">प्रधानाचार्य</p>
-                <p class="principle_sign">
-                    <img src="/media/admission_photos/principle_signature.png" alt="प्रधानाचार्य">
-                </p>
-                <br>
-            </div>
-       
+        <div class="content">
+            <div class="static-box trans_cer">
+                <div class="col-sm-3">
+                  <div class="combined-info">
+                      <p class="college-code">कॉलेज कोड: 0574</p>
+                      <img src="/media/admission_photos/logo.png" width="150px" class="college_logo">
+                  </div>
+                </div>
+                <div class="character_cer col-sm-7">
+                      <span class="sub-heading">दीनदयाल उपाध्याय गोरखपुर विश्वविद्यालय, गोरखपुर से संबद्ध</span>
+                      <h1 class="center-text">चंद्रिका प्रसाद महाविद्यालय</h1> 
+                      <p class="address_college">ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)</p>
+                      <h3 class="charac_cert_center_text">चरित्र प्रमाण पत्र</h3>
+                      
+                </div> 
+                <div class="col-sm-2"></div>
+                <div class="clearfix"></div>
+                <div class="col-sm-3">
+                  <p class="date_numner">क्रमांक............. </p>
+                </div>
+      
+              <div class="col-sm-9">
+              <p class="date_input"> दिनांक: <input type="text" name="today_date" value=""></p>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-sm-12">
+                  <div class="character_content">
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;प्रमाणित किया जाता है कि श्री/कु0/श्रीमती {{ admission_form.first_name }} {{ admission_form.middle_name }} {{ admission_form.last_name }}
+                      पुत्र/पुत्री/पत्नी श्री  {{ admission_form.father_name }} पता {{ admission_form.address }} |
+                      इस विद्यालय के छात्र/छात्रा रहे हैं |
+                      यह इस महाविद्यालय में कक्षा B A {{ admission_form.admission_batch}} Year के सत्र <input type="text" name="admission_year" value=" "> से <input type="text" name="exit_year" value=" ">
+                      तक संस्थागत छात्र/छात्रा रहे हैं |
+                      इन्होने सत्र <input type="text" name="exam_year" value=" "> में इस संस्था से कक्षा BA <input type="text" name="exam_batch" value=" "> Year की परीक्षा <input type="text" name="exam_grade" value=" ">
+                      श्रेष्ठी में उत्तीरण/अनुत्तीरण किया | जहाँ तक मुझे ज्ञात है इनका चरित्र उत्तम है|<br>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;मैं जीवन में हर दृष्टि से इनकी सफलता की कामना करता है |
+                  </div>
+                  <div class="col-sm-6">
+                      <p class="lipik_class">
+                          ह0 कार्यालय लिपिक
+                      </p>
+                  </div>
+                  <div class="col-sm-6">
+                      <p class="principle_class">प्रधानाचार्य</p>
+                      <p class="principle_sign">
+                          <img src="/media/admission_photos/principle_signature.png" alt="प्रधानाचार्य">
+                      </p>
+                      <br>
+                  </div>
+             
+              </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-sm-12"><button onclick="printCertificate()" class="print_btn">Print Certificate</button></div><br>
+             <!-- <a href="{% url 'student_list_details' %}">Back to CC Student Details</a> -->
         </div>
-        </div>
+        
  </div>
    
-    <button onclick="printCertificate()">Print Certificate</button><br>
-    <a href="{% url 'student_list_details' %}">Back to CC Student Details</a>
+    
     <script>
         function printCertificate() {
             window.print(); // This will trigger the print dialog

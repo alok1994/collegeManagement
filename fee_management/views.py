@@ -10,6 +10,10 @@ from django.core.paginator import Paginator
 from num2words import num2words
 from fee_structure.models import Semester 
 from django.db.models import Sum
+from twilio.rest import Client
+from django.conf import settings
+from django.http import HttpResponse
+import threading
 
 @login_required
 def fee_detail(request):
@@ -42,6 +46,29 @@ def fee_detail(request):
 @login_required
 def fee_submission(request, student_id):
     student = get_object_or_404(AdmissionForm, id=student_id)
+
+    def send_message_background(total_paid_amount, current_semester, remaining_amount, ):
+        # Construct the message
+        message = f"Dear {student.first_name}, you have paid {total_paid_amount} for Semester {current_semester }. {remaining_amount } is remaining. Please make the payment as soon as possible."
+
+        # Use Twilio to send the message
+        client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+
+        # Sanitize the phone number (remove non-numeric characters)
+        to_number = ''.join(filter(str.isdigit, student.mobile_number))
+
+            # Format the phone number with the country code (e.g., for India)
+        formatted_to_number = '+91 ' + to_number
+
+        try:
+            message = client.messages.create(
+                to=formatted_to_number,
+                from_='33430',  # Replace with your Twilio number
+                body=message
+            )
+        except Exception as e:
+            # Handle the error, e.g., log it for debugging
+            print(f"Twilio Error: {str(e)}")
 
     if request.method == 'POST':
         fee_form = FeeForm(request.POST)
@@ -100,6 +127,10 @@ def fee_submission(request, student_id):
             remaining_amount = total_semester_fee - total_paid_amount - total_paid_amount_history[current_semester]
             fee.remaining_amount = remaining_amount
 
+            # Create a thread to send the message in the background
+            message_thread = threading.Thread(target=send_message_background(total_paid_amount, current_semester,remaining_amount))
+            message_thread.start()
+
             fee.save()
 
             return redirect('generate_receipt', fee_id=fee.id)
@@ -135,5 +166,32 @@ def fee_history(request, student_id):
     return render(request, 'fee_management/fee_history.html', {'student': student, 'fee_history': fee_history})
 
 
+def send_message(request, student_id, remaining_amount):
+    student = get_object_or_404(AdmissionForm, id=student_id)
+
+    # Sanitize the phone number (remove non-numeric characters)
+    to_number = ''.join(filter(str.isdigit, student.mobile_number))
+
+    # Format the phone number with the country code (e.g., for India)
+    formatted_to_number = '+91 ' + to_number
+
+    # Define the message to send
+    message = f"Dear {student.first_name}, your remaining fee amount is {remaining_amount}. Please make the payment as soon as possible."
+
+    # Use Twilio to send the message
+    client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+
+    try:
+    
+        message = client.messages.create(
+            to=formatted_to_number,
+            from_='3432',
+            body=message
+        )
+        return HttpResponse("Message sent successfully!")
+    except Exception as e:
+        # Handle the error, e.g., log it for debugging
+        print(f"Twilio Error: {str(e)}")
+        return HttpResponse("Error sending the message.")
 
 

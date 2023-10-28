@@ -11,20 +11,6 @@
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <script src="/static/jquery.min.js"></script>
     <script src="/static/bootstrap.min.js"></script>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -38,7 +24,6 @@
             </ul>
         {% endif %}
     </header>
-    <h2>Student Fee Details</h2>
     <div class="container-fluid">
         <div class="sidebar">
             <ul class="dashboard_list">
@@ -55,7 +40,9 @@
             </ul>
         </div>
         <div class="content">
-            <form method="get">
+            <h1 class="student_heading">Student Fee Details</h1>
+            <form method="get" class="admission_filter">
+                <div class="col-sm-8 year_admin">
                 <label for="class_filter">Filter by Semester:</label>
                 <select id="class_filter" name="class_filter">
                     <option value="">All</option>
@@ -63,12 +50,12 @@
                     <option value="{{ choice }}" {% if choice == selected_class %}selected{% endif %}>{{ choice }}</option>
                     {% endfor %}
                 </select>
-                <button type="submit">Filter</button>
+               </div>
+               <div class="col-sm-4"><button type="submit" class="apply_filter">Filter</button></div>
             </form>
         
             {% if class_students %}
-            <h2>Students:</h2>
-            <table>
+            <table class="student_list_tab">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -86,8 +73,8 @@
                         <td>{{ student.father_name }}</td>
                         <td>{{ student.mother_name }}</td>
                         <td>Semester {{ student.current_semester }}</td>
-                        <td><a href="{% url 'fee_submission' student.id %}">Submit Fee</a></td>
-                        <td><a href="{% url 'fee_history' student.id %}">View Fee History</a></td>                
+                        <td><a href="{% url 'fee_submission' student.id %}" class="details_btn">Submit Fee</a></td>
+                        <td><a href="{% url 'fee_history' student.id %}" class="update_btn">View Fee History</a></td>                
                         
                     </tr>
                     {% endfor %}
@@ -96,21 +83,22 @@
             {% else %}
             <p>No students found.</p>
             {% endif %}
-            <div class="pagination">
-                <span class="step-links">
-                    {% if class_students.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ class_students.previous_page_number }}">previous</a>
-                    {% endif %}
-                    
-                    <span class="current-page">{{ class_students.number }} / {{ class_students.paginator.num_pages }}</span>
-                    
-                    {% if class_students.has_next %}
-                        <a href="?page={{ class_students.next_page_number }}">next</a>
-                        <a href="?page={{ class_students.paginator.num_pages }}">last &raquo;</a>
-                    {% endif %}
-                </span>
-            </div>
+            
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                {% if class_students.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ class_students.previous_page_number }}">previous</a>
+                {% endif %}
+                
+                <span class="current-page">{{ class_students.number }} / {{ class_students.paginator.num_pages }}</span>
+                
+                {% if class_students.has_next %}
+                    <a href="?page={{ class_students.next_page_number }}">next</a>
+                    <a href="?page={{ class_students.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
         </div>
     </div> 
 </body>
