@@ -1,0 +1,99 @@
+<!-- messagingapp/templates/messagingapp/send_messages.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 999; /* Make sure it has a higher z-index than the rest of the content */
+}
+        </style>
+        <title>Send Messages</title>
+        <!-- <div class="popup">
+            <p>Messages sent successfully!</p>
+        </div> -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p class="message_text">Messages sent successfully!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="closeButton">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- <script>
+            {% if messages_sent %}
+                alert("Messages sent successfully!");
+            {% endif %}
+        </script> -->
+        <title>Student List</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/static/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/bootstrap.min.css">
+        <script src="/static/jquery.min.js"></script>
+        <script src="/static/bootstrap.min.js"></script>
+    </head>
+<body>
+    <header>
+        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </header>
+    <div class="container-fluid">
+        <div class="sidebar">
+            <ul class="dashboard_list">
+                <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
+                <li><a href="{% url 'admission_form' %}"><i class="fa fa-wpforms" aria-hidden="true"></i> Admission Form</a></li>
+                <li><a href="{% url 'student_list' %}"><i class="fa fa-user"></i> Student List</a></li>
+                <li><a href="{% url 'first_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> First Year</a></li>
+                <li><a href="{% url 'second_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Second Year</a></li>
+                <li><a href="{% url 'third_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Third Year</a></li>
+                <li><a href="{% url 'fee_detail' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Management</a></li>
+                <li><a href="{% url 'student_list_details' %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
+                <li><a href="{% url 'student_list_details_transfer' %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
+                <li><a href="{% url 'fee_structure' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Structure</a></li>
+                <li><a href="{% url 'send_messages' %}"><i class="fa fa-bell" aria-hidden="true"></i>Send Notification</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1>Send Messages</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" data-toggle="modal" data-target="#myModal" id="sendButton">Send Messages</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        // Get a reference to the close button
+        var closeButton = document.getElementById("closeButton");
+    
+        // Add an event listener to close the modal when the close button is clicked
+        closeButton.addEventListener("click", function() {
+            $('#myModal').modal('hide'); // Manually hide the modal
+        });
+    </script>
+    
+    
+</body>
+</html>

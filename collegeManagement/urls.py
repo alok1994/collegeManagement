@@ -14,6 +14,7 @@ urlpatterns = [
     path('student_detail_trans_cert/', include('transfer_certificate.urls')),
     path('generate_tc/', include('transfer_certificate.urls')),
     path('', include('fee_structure.urls')),
+    path('messagingapp/', include('messagingapp.urls')),
     
 ]
 

@@ -381,6 +381,11 @@ a:hover{
     .college_logo {
         float: left;
     }
+    .message_text {
+        color: green;
+        margin-top: 20px;
+        text-align: center;
+    }
     @media print {
         .sidebar, button.print_btn, a.back_to_student, header, title{
            display:none !important;

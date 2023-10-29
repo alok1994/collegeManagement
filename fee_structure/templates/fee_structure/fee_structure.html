@@ -6,9 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="/static/styles.css">
-        <link rel="stylesheet" href="/static/bootstrap.min.css">
-        <script src="/static/jquery.min.js"></script>
-        <script src="/static/bootstrap.min.js"></script>
     </head>
 <body>
     <header>
@@ -16,7 +13,7 @@
         <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
         
     </header>
-    <div class="container-fluid">
+    <div class="container">
         <div class="sidebar">
             <ul class="dashboard_list">
                 <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
@@ -29,11 +26,13 @@
                 <li><a href="{% url 'student_list_details' %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
                 <li><a href="{% url 'student_list_details_transfer' %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
                 <li><a href="{% url 'fee_structure' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Structure</a></li>
+                <li><a href="{% url 'send_messages' %}"><i class="fa fa-bell" aria-hidden="true"></i>Send Notification</a></li>
+
             </ul>
         </div>
         <div class="content">
-            <h1 class="student_heading">Fee Structure</h1>
-            <table class="student_list_tab">
+            <h1>Fee Structure</h1>
+            <table class="fee-structure">
               <thead>
                 <tr>
                   <th>Semester</th>

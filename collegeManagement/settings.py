@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'fee_structure',
     'transfer_certificate',
     'character_certificate',
+    'messagingapp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -165,5 +166,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-TWILIO_ACCOUNT_SID = 'adasdad'
-TWILIO_AUTH_TOKEN = 'adadas'
+TWILIO_ACCOUNT_SID = 'Adfsfs'
+TWILIO_AUTH_TOKEN = 'fsfsfsd'
