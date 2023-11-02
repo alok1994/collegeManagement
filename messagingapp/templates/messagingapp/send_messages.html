@@ -59,7 +59,7 @@
             </ul>
         {% endif %}
     </header>
-    <div class="container-fluid">
+    <div class="container">
         <div class="sidebar">
             <ul class="dashboard_list">
                 <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
@@ -80,7 +80,7 @@
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" data-toggle="modal" data-target="#myModal" id="sendButton">Send Messages</button>
+                <button type="submit" data-toggle="modal" data-target="#myModal" id="sendButton" class="save_btn">Send Messages</button>
             </form>
         </div>
     </div>

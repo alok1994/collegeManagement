@@ -23,7 +23,7 @@
             </ul>
         {% endif %}
     </header>
-    <div class="container-fluid">
+    <div class="feereceipt charac_cert">
         <div class="sidebar">
             <ul class="dashboard_list">
               <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
@@ -39,87 +39,115 @@
               <li><a href="{% url 'send_messages' %}"><i class="fa fa-bell" aria-hidden="true"></i>Send Notification</a></li>
             </ul>
           </div>
-    </div>
-    <div class="content">
-        <div class="container">
-            <div class="header">
-                <h3>चंद्रिका प्रसाद महाविद्यालय</h3>
-                <p>ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)</p>
-            </div>
-            <div class="student-details">
-                <p><b>Student Name:</b> {{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</p>
-                <p><b>Father Name:</b> {{ student.father_name }}</p>
-                <p><b>Class:</b> BA {{ student.admission_batch }} Year</p>
-                <p><b>Date of Payment:</b> {{ fee.payment_date }}</p>
-                <p><b>Fee Month:</b> {{ fee.fee_for_month }}</p>
-                <p><b>Receipt Number:</b> {{ fee.receipt_number }}</p>
-            </div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>S N</th>
-                        <th>Particulars</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Registration Fee</td>
-                        <td>{{ fee.registration_fee }}</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Tuition Fee</td>
-                        <td>{{ fee.tuition_fee }}</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Exam Fee</td>
-                        <td>{{ fee.exam_fee }}</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Sports Fee</td>
-                        <td>{{ fee.sports_fee }}</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Miscellaneous Fee</td>
-                        <td>{{ fee.miscellaneous_fee }}</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Late Fee</td>
-                        <td>{{ fee.late_fee }}</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>Discount Fee</td>
-                        <td>{{ fee.discount_fee }}</td>
-                    </tr>
-                    <!-- Add more fee particulars as needed -->
-                </tbody>
-            </table>
-            <div class="total-section">
-                <p><b>Total Amount:</b> ₹{{ fee.total_paid_amount }} </p>
-                <p><b>Total Amount In Words: </b> {{ fee.total_amount_in_words }} Rupees Only </p>
-            </div>
-            <div class="footer">
-                <div class="signature-block">
-                    <div class="student-signature">
-                        <p>Student's Signature</p>
-                        <!-- Add space for the student's signature -->
+          <div class="content">
+            <div class="static-box trans_cer">
+                <div class="col-sm-4">
+                    <div class="combined-info">
+                        <p class="college-code">कॉलेज कोड: 0574</p>
+                        <img src="/media/admission_photos/logo.png" width="150px" class="college_logo">
                     </div>
-                    <div class="receiver-signature">
-                        <p>Receiver's Signature</p>
-                        <!-- Add space for the receiver's signature -->
+                  </div>
+                  <div class="character_cer col-sm-8">
+                    <p class="sub-heading center-text">दीनदयाल उपाध्याय गोरखपुर विश्वविद्यालय, गोरखपुर से संबद्ध</p>
+                    <h1 class="center-text">चन्द्रिका प्रसाद महाविद्यालय</h1> 
+                    <p class="address_college">ग्राम व पोस्ट : - रामपुर बरहन (खानगी), वि.ख - दुदही (कुशीनगर)</p>           
+              </div> 
+              <div class="clearfix"></div>
+                <div class="student-details clearfix">
+                    <div class="col-sm-6">
+                        <p><b>Student Name:</b> {{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</p>
                     </div>
+                    <div class="col-sm-6">
+                        <p><b>Father Name:</b> {{ student.father_name }}</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <p><b>Father Name:</b> {{ student.father_name }}</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><b>Class:</b> BA {{ student.admission_batch }} Year</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <p><b>Date of Payment:</b> {{ fee.payment_date }}</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p><b>Fee Month:</b> {{ fee.fee_for_month }}</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-sm-6">
+                        <p><b>Receipt Number:</b> {{ fee.receipt_number }}</p>
+                    </div>
+        
                 </div>
-                <button id="print-button">Print Receipt</button>
-            </div>
-        </div>    
+                <table class="student_list_tab" style="margin-left: 0px;">
+                    <thead>
+                        <tr>
+                            <th>S N</th>
+                            <th>Particulars</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Registration Fee</td>
+                            <td>{{ fee.registration_fee }}</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Tuition Fee</td>
+                            <td>{{ fee.tuition_fee }}</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Exam Fee</td>
+                            <td>{{ fee.exam_fee }}</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Sports Fee</td>
+                            <td>{{ fee.sports_fee }}</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Miscellaneous Fee</td>
+                            <td>{{ fee.miscellaneous_fee }}</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Late Fee</td>
+                            <td>{{ fee.late_fee }}</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Discount Fee</td>
+                            <td>{{ fee.discount_fee }}</td>
+                        </tr>
+                        <!-- Add more fee particulars as needed -->
+                    </tbody>
+                </table>
+                <div class="total-section">
+                    <p><b>Total Amount:</b> ₹{{ fee.total_paid_amount }} </p>
+                    <p><b>Total Amount In Words: </b> {{ fee.total_amount_in_words }} Rupees Only </p>
+                </div>
+                <div class="footer">
+                    <div class="signature-block">
+                        <div class="student-signature">
+                            <p>Student's Signature</p>
+                            <!-- Add space for the student's signature -->
+                        </div>
+                        <div class="receiver-signature">
+                            <p>Receiver's Signature</p>
+                            <!-- Add space for the receiver's signature -->
+                        </div>
+                    </div>
+                    <button id="print-button" class="details_btn">Print Receipt</button>
+                </div>
+            </div>    
+        </div>
     </div>
+   
         <!-- Include jQuery for the print button functionality -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Add the JavaScript code to handle the Print button click -->

@@ -13,7 +13,7 @@
         Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
     </header>
-    <div class="container-fluid">
+    <div class="container">
         <div class="sidebar">
             <ul class="dashboard_list">
                 <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
@@ -39,5 +39,25 @@
             </form>
         </div>
     </div>
+    <script>
+        var onChange = function(evt) {
+        
+        var val1 = document.getElementById('id_tuition_fee').value;
+        var val2 = document.getElementById('id_exam_fee').value;
+        var val3 = document.getElementById('id_sport_fee').value;
+        var val4 = document.getElementById('id_miscellaneous_fee').value;
+        var sum = Number(val1) + Number(val2) + Number(val3) + Number(val4);
+        document.getElementById('id_semester_total').value = sum;
+        }
+        var id_tuition_fee = document.getElementById('id_tuition_fee');
+        var id_exam_fee = document.getElementById('id_exam_fee');
+        var id_sport_fee = document.getElementById('id_sport_fee');
+        var id_miscellaneous_fee = document.getElementById('id_miscellaneous_fee');
+        id_tuition_fee.addEventListener('input', onChange, false);
+        id_exam_fee.addEventListener('input', onChange, false);
+        id_sport_fee.addEventListener('input', onChange, false);
+        id_miscellaneous_fee.addEventListener('input', onChange, false);
+        $("#id_semester_total").attr("readonly", true)
+    </script>
 </body>
 </html>

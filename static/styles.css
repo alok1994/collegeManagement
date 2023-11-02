@@ -234,7 +234,7 @@ table.student_list_tab th, table.student_list_tab td {
     font-size: 12px;
     text-transform: capitalize;
 }
-a.details_btn {
+.details_btn {
     background-color: #3c8dbc;
     border-color: #367fa9;
     border-radius: 5px;
@@ -242,7 +242,7 @@ a.details_btn {
     padding: 5px;
     color: #fff;
 }
-a.update_btn {
+.update_btn {
     background-color: #00a65a;
     border-color: #008d4c;
     border-radius: 5px;
@@ -250,13 +250,30 @@ a.update_btn {
     padding: 5px;
     color: #fff;
 }
+.save_btn {
+    background-color: #3c8dbc;
+    border-color: #3c8dbc;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    padding: 7px 5px;
+    color: #fff;
+}
 .student_heading{
-    border-bottom: 2px solid #008080;
-    width: 20%;
     text-align: center;
     margin: 30px auto;
     padding-bottom: 2px;
     font-size: 26px;
+    position: relative;
+    z-index: 1;
+}
+.student_heading:before {
+    content: "";
+    position: absolute;
+    left: 40%;
+    bottom: 0;
+    height: 7px;
+    width: 20%;
+    border-bottom: 2px solid #008080;
 }
 .student_heading.update_heading {
     width: 40%;
@@ -318,7 +335,7 @@ a:hover{
         text-align: center;
         font-size: smaller;
     }
-    a.back_to_student {
+    .back_to_student {
         position: relative;
         float: right;
         right: 16%;

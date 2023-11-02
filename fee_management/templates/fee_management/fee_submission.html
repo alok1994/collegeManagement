@@ -22,10 +22,7 @@
             </ul>
         {% endif %}
       </header>
-      <div class="center-text">
-        <h3> चंद्रिका प्रसाद महाविद्यालय</h3> 
-        <p>ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)</p>
-    </div>
+      
     <div class="container-fluid">
         <div class="sidebar">
             <ul class="dashboard_list">
@@ -44,13 +41,17 @@
           </div>
     </div>
     <div class="content">
-        <div class="container">
+        <div class="center-text">
+            <h3> चंद्रिका प्रसाद महाविद्यालय</h3> 
+            <p>ग्राम व पोस्ट : - रामपुर बरहन (खनगी), वि.ख - दुदही (कुशीनगर)</p>
+        </div>
+        <div class="container student_sec">
             <div class="section">
                 <p><b>Student Name:</b> {{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</p>
                 <p><b>Father Name:</b> {{ student.father_name }}</p>
                 <p><b>Admission Class:</b> BA {{ student.admission_batch }} Year</p>
             </div>
-            <div class="section">
+            <div class="section fee_sec">
                 <form method="post" id="fee-submission-form">
                     {% csrf_token %}
                     <div>
@@ -61,8 +62,8 @@
                         <input type="date" name="payment_date" id="payment_date">
                     </div>
                 </div>
-            </div>
-            <div class="container section">
+        </div>
+        <div class="container student_sec">
                 <table class="table">
                     <thead>
                         <tr>
@@ -103,16 +104,16 @@
                     <td>Late Fee</td>
                     <td><input type="number" step="0.01" name="late_fee" id="late_fee"></td>
                 </tr>
-
+<br>
                 <tr>
                     <td>Discount on Fee</td>
                     <td><input type="number" step="0.01" name="discount_fee" id="discount_fee"></td>
                 </tr>
-
+                <br>
                 <div class="section">
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="details_btn">Submit</button>
                 </div>
         </form>
-    </div>
+       </div>
     </body>
 </html>

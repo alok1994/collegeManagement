@@ -22,7 +22,7 @@
         </ul>
     {% endif %}
   </header>
-  <h2>Fee History {{ student.first_name }} {{ student.middle_name}} {{ student.last_name }}</h2>
+  
   <div class="container-fluid">
     <div class="sidebar">
       <ul class="dashboard_list">
@@ -40,7 +40,8 @@
       </ul>
     </div>
     <div class="content">
-      <table border="1">
+      <h2>Fee History {{ student.first_name }} {{ student.middle_name}} {{ student.last_name }}</h2>
+      <table class="student_list_tab" border="1">
         <thead>
             <tr>
                 <th>Payment Date</th>
@@ -72,7 +73,7 @@
                     <td>{{ fee.total_paid_amount }}</td>
                     <td>{{ fee.remaining_amount }}</td>
                     <td>
-                      <button class="send-message-button" data-student="{{ student.id }}" data-amount="{{ fee.remaining_amount }}">
+                      <button class="send-message-button details_btn" data-student="{{ student.id }}" data-amount="{{ fee.remaining_amount }}">
                           Send Message
                       </button>
                     </td>
