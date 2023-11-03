@@ -11,9 +11,9 @@ def admission_form(request):
         if form.is_valid():
             photo = request.FILES['photo']
             print(f'Uploaded file name: {photo.name}')
-            form.save()
+            admission = form.save()
             # You can redirect to a success page or display a success message here
-            return redirect('admission_success')
+            return redirect('student_details', student_id=admission.id)
         else:
             # If there are form validation errors, you can print them to see what's wrong
             print(form.errors)

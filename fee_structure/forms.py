@@ -4,4 +4,4 @@ from .models import Semester
 class SemesterFeeUpdateForm(forms.ModelForm):
     class Meta:
         model = Semester
-        fields = ['tuition_fee', 'exam_fee', 'sport_fee', 'miscellaneous_fee', 'semester_total']
+        fields = ['registration_fee','tuition_fee', 'exam_fee', 'sport_fee', 'miscellaneous_fee', 'semester_total']

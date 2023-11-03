@@ -36,6 +36,7 @@
               <thead>
                 <tr>
                   <th>Semester</th>
+                  <th>Registration Fee</th>
                   <th>Tuition Fee</th>
                   <th>Exam Fee</th>
                   <th>Sports Fee</th>
@@ -48,6 +49,7 @@
               {% for semester in semesters %}
                 <tr>
                   <td>Semester {{ semester.semester_number }}</td>
+                  <td>{{ semester.registration_fee }}</td>
                   <td>{{ semester.tuition_fee }}</td>
                   <td>{{ semester.exam_fee }}</td>
                   <td>{{ semester.sport_fee }}</td>

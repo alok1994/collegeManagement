@@ -46,17 +46,20 @@
         var val2 = document.getElementById('id_exam_fee').value;
         var val3 = document.getElementById('id_sport_fee').value;
         var val4 = document.getElementById('id_miscellaneous_fee').value;
-        var sum = Number(val1) + Number(val2) + Number(val3) + Number(val4);
+        var val5 = document.getElementById('id_registration_fee').value;
+        var sum = Number(val1) + Number(val2) + Number(val3) + Number(val4) + Number(val5);
         document.getElementById('id_semester_total').value = sum;
         }
         var id_tuition_fee = document.getElementById('id_tuition_fee');
         var id_exam_fee = document.getElementById('id_exam_fee');
         var id_sport_fee = document.getElementById('id_sport_fee');
         var id_miscellaneous_fee = document.getElementById('id_miscellaneous_fee');
+        var id_registration_fee = document.getElementById('id_registration_fee');
         id_tuition_fee.addEventListener('input', onChange, false);
         id_exam_fee.addEventListener('input', onChange, false);
         id_sport_fee.addEventListener('input', onChange, false);
         id_miscellaneous_fee.addEventListener('input', onChange, false);
+        id_registration_fee.addEventListener('input', onChange, false);
         $("#id_semester_total").attr("readonly", true)
     </script>
 </body>
