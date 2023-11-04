@@ -14,6 +14,7 @@ from twilio.rest import Client
 from django.conf import settings
 from django.http import HttpResponse
 import threading
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def fee_detail(request):
@@ -156,12 +157,32 @@ def generate_receipt(request, fee_id):
 
     return render(request, 'fee_management/receipt.html', context)
 
+'''@login_required
+def fee_history(request, student_id):
+    student = get_object_or_404(AdmissionForm, id=student_id)  # Get the student by ID
+
+    # Query the database to get the fee history for the selected student
+    fee_history = Fee.objects.filter(student=student).order_by('-payment_date')
+
+    return render(request, 'fee_management/fee_history.html', {'student': student, 'fee_history': fee_history})'''
+
 @login_required
 def fee_history(request, student_id):
     student = get_object_or_404(AdmissionForm, id=student_id)  # Get the student by ID
 
     # Query the database to get the fee history for the selected student
     fee_history = Fee.objects.filter(student=student).order_by('-payment_date')
+
+    # Configure the pagination
+    page = request.GET.get('page')
+    paginator = Paginator(fee_history, 10)  # Show 10 fee entries per page
+
+    try:
+        fee_history = paginator.page(page)
+    except PageNotAnInteger:
+        fee_history = paginator.page(1)
+    except EmptyPage:
+        fee_history = paginator.page(paginator.num_pages)
 
     return render(request, 'fee_management/fee_history.html', {'student': student, 'fee_history': fee_history})
 
