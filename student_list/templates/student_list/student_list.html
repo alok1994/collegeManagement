@@ -65,7 +65,13 @@
                 <tbody>
                     {% for student in students %}
                         <tr>
-                            <td class="photo-column"><img src="{{ student.photo.url  }}" alt="{{ student.first_name }} {{ student.last_name }} Photo" width="50"></td>
+                            <td class="photo-column">
+                                {% if student.photo and student.photo.url %}
+                                    <img src="{{ student.photo.url }}" alt="{{ student.first_name }} {{ student.last_name }} Photo" width="50">
+                                {% else %}
+                                    <p>No photo available</p>
+                                {% endif %}
+                            </td>
                             <td class="name-column">{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</td>
                             <td class="father-name-column">{{ student.father_name }}</td>
                             <td class="mother-name-column">{{ student.mother_name }}</td>

@@ -25,6 +25,11 @@ class AdmissionForm(models.Model):
     subjects = models.CharField(max_length=1000) 
     registration_number = models.CharField(max_length=20, blank=True)
     current_semester = models.CharField(max_length=20, blank=True)
+    dist = models.CharField(max_length=40, blank=True)
+    pin_code = models.CharField(max_length=20, blank=True)
+    state = models.CharField(max_length=40, blank=True)
+    email = models.CharField(max_length=40, blank=True)
+    gender = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

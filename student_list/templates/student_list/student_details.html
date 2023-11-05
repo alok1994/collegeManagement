@@ -48,8 +48,12 @@
                     <!--<td width=""><b>Class :</b></td>-->
                     <!--<td width=""></td>-->
                     <td rowspan="3">
-                        <img src="{{ student.photo.url }}" alt="{{ student.first_name }} {{ student.last_name }} Photo" width="150">
-                    </td>
+                      {% if student.photo %}
+                          <img src="{{ student.photo.url }}" alt="{{ student.first_name }} {{ student.last_name }} Photo" width="150">
+                      {% else %}
+                          <p>No photo attached</p>
+                      {% endif %}
+                  </td>
                   </tr>
                 
                   <tr>
@@ -60,14 +64,14 @@
                   </tr>
                   <tr>
                     <td><b>Enrollment No. :</b></td>
-                    <td></td>
+                    <td>{{ student.id }}</td>
                     <td><b>Roll No. :</b></td>
-                    <td></td>
+                    <td>{{ student.registration_number }}</td>
                   </tr>
                   <tr>
                     <td><b>Date of Birth :</b></td>
                     <td colspan="2">{{ student.date_of_birth }}</td>
-                    <td><b>Date of Adm.:</b></td>
+                    <td><b>Date of Admission.:</b></td>
                     <td>{{ student.admission_date }}</td>
                   </tr>
                   <tr>
@@ -78,10 +82,13 @@
                   </tr>
                   <tr>
                     <td><b>Gender :</b></td>
-                    <td colspan="2">male</td>
-                    <td><b>Transport :</b></td>
-                    <td>  </td>
+                    <td colspan="2">{{ student.gender}}</td>
+                    <td><b>Father's Name :</b></td>
+                    <td>{{ student.father_name }}</td>
                   </tr>
+
+                  <td><b>Mother's Name :</b></td>
+                  <td colspan="2">{{ student.mother_name }} </td>
                   <tr>
                     <td><b>Category :</b></td>
                     <td colspan="2">{{ student.caste }}</td>
@@ -89,10 +96,10 @@
                     <td>Indian</td>
                   </tr>
                   <tr>
-                    <td><b>Adhaar Number :</b></td>
+                    <td><b>Aadhar Number :</b></td>
                     <td colspan="2">{{ student.aadhar_number }}</td>
                     <td><b>Email :</b></td>
-                    <td></td>
+                    <td>{{ student.email }}</td>
                   </tr>
                   <tr>
                     <td><b>10th Pass Out Year:</b></td>
@@ -122,24 +129,25 @@
                     <td>{{ student.school_details_12th }}</td>
                   </tr>
                   
-                    <tr><td><b>Father's Name :</b></td>
-                    <td colspan="2">{{ student.father_name }}</td>
-                    <td><b>Mother's Name :</b></td>
-                    <td colspan="2">{{ student.mother_name }} </td>
-                  </tr>
-                  
-                  
                   <tr>
                     <td><b>Address :</b></td>
                     <td colspan="2">{{ student.address }} </td>
-                    <td><b>Subject :</b></td>
-                    <td colspan="2">{{ student.subjects }}</td>               
-                  </tr>
-                  <tr>
-                    <td><b>Current Semester :</b></td>
-                    <td colspan="2">{{student.current_semester}}</td>
                     <td><b>PIN :</b></td>
-                    <td colspan="2">274302</td>
+                    <td colspan="2">{{ student.pin_code }}</td>               
+                  </tr>
+
+                  <tr>
+                    <td><b>District :</b></td>
+                    <td colspan="2">{{ student.dist }} </td>
+                    <td><b>State :</b></td>
+                    <td colspan="2">{{ student.state }}</td>               
+                  </tr>
+
+                  <tr>
+                    <td><b>Current Semester:</b></td>
+                    <td colspan="2">{{student.current_semester}}</td>
+                    <td><b>Subjects :</b></td>
+                    <td colspan="2">{{ student.subjects }}</td>
                   </tr>
                   
                   

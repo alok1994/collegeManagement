@@ -9,8 +9,14 @@ def admission_form(request):
         form = AdmissionFormForm(request.POST, request.FILES)
        
         if form.is_valid():
-            photo = request.FILES['photo']
-            print(f'Uploaded file name: {photo.name}')
+            #photo = request.FILES['photo']
+            #print(f'Uploaded file name: {photo.name}')
+            if 'photo' in request.FILES:
+                photo = request.FILES['photo']
+                print(f'Uploaded file name: {photo.name}')
+            else:
+                # Handle the case where 'photo' is not attached
+                print("No photo attached in the form.")
             admission = form.save()
             # You can redirect to a success page or display a success message here
             return redirect('student_details', student_id=admission.id)

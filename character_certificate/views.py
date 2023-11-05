@@ -52,7 +52,6 @@ def student_list_details(request):
 
 def view_character_certificate(request, student_id):
     # Retrieve the AdmissionForm instance
-    print('char')
     admission_form = AdmissionForm.objects.get(pk=student_id)
     character_certificate = CharacterCertificate.objects.filter(student=admission_form).first()
     activate('hi')
