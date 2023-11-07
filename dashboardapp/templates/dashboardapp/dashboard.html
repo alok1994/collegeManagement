@@ -44,107 +44,178 @@
             </div>
             <div class="col-sm-6">
             <div id="user-count-box" class="user-count-box">
-                Total Users: <span id="user-count">{{ total_users }}</span>
+                Total Users: <span id="totalUsersCount">X</span>
             </div>
         </div>
 
+        <div class="col-sm-6">
+            <div class="student-count-box"> 
+                BA 1st Year Students: <span id="firstYearCount">X</span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="student-count-box"> 
+                BA 2nd Year Students: <span id="secondYearCount">X</span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="student-count-box"> 
+                BA 3rd Year Students: <span id="thirdYearCount">X</span>
+            </div>
+        </div>
+        
             <!-- Your content goes here -->
 
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <div>
-                <canvas id="classChart" style="display: block;box-sizing: border-box;height: 300px;width: 400px;"></canvas>
-            </div>
-            <script>
-                // Fetch student data from the API endpoint
-                fetch('/admission/student-data-api/')
-                    .then(response => response.json())
-                    .then(data => {
-                        // Process the data and update your chart
-                        const classData = {}; // Object to store class data
-
-                        // Process the data and populate classData object
-                        data.forEach(student => {
-                            const className = student.admission_batch;
-                            if (!classData[className]) {
-                                classData[className] = 1;
-                            } else {
-                                classData[className]++;
-                            }
-                        });
-
-                        // Create the class chart
-                        const classChartCanvas = document.getElementById('classChart').getContext('2d');
-                        new Chart(classChartCanvas, {
-                            type: 'bar',
-                            data: {
-                                labels: Object.keys(classData), // Class names
-                                datasets: [{
-                                    label: 'Number of Students',
-                                    data: Object.values(classData), // Number of students per class
-                                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar color
-                                    borderColor: 'rgba(75, 192, 192, 1)', // Border color
-                                    borderWidth: 1,
-                                }],
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true,
-                                    },
-                                },
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                aspectRatio: 0.2,
-                            },
-                        });
-
-                        const totalStudents = Object.values(classData).reduce((total, count) => total + count, 0);
-                        const countElement = document.getElementById('totalStudentsCount');
-
-                        let currentCount = 0;
-                        const increment = Math.ceil(totalStudents / 100); // Adjust the speed of animation
-
-                        const updateCount = () => {
-                        currentCount += increment;
-                        if (currentCount >= totalStudents) {
-                            currentCount = totalStudents;
-                            clearInterval(countInterval);
-                        }
-                        countElement.textContent = currentCount;
-                    };
-
-                    const countInterval = setInterval(updateCount, 50); 
-
-                    function sortUserCount() {
-                        const userCount = document.getElementById('user-count');
-                        const originalCount = parseInt(userCount.textContent, 10); // Parse the current count as an integer
-                        let currentCount = originalCount; // Initialize the current count
-
-                        // Function to update the count
-                    function updateCount() {
-                    if (currentCount <= originalCount) {
-                        userCount.textContent = currentCount; // Update the displayed count
-                        currentCount++;
-                    setTimeout(updateCount, 100); // Repeat the update after 100 milliseconds
-                    }
-                }
-
-        updateCount(); // Start the count update
-    }
-
-    // Call the sorting function when the page loads
-    window.addEventListener('load', sortUserCount);
-
-                })
-
-                
-                
-                    .catch(error => {
-                        console.error('Error fetching student data:', error);
-                    });
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                        <div>
+                            <canvas id="classChart" style="display: block;box-sizing: border-box;height: 300px;width: 400px;"></canvas>
+                        </div>
+                        <script>
+                            // Function to update the student counts
+                            function updateStudentCounts() {
+                                // Fetch student data from the API endpoint
+                                fetch('/admission/student-data-api/')
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        // Process the data and update your chart
+                                        const classData = {}; // Object to store class data
             
-            </script>
-        </div>
-    </div>
-</body>
-</html>
+                                        const backgroundColors = [
+                                            'rgba(75, 192, 192, 0.2)',
+                                            'rgba(256, 99, 132, 0.2)',
+                                            'rgba(255, 206, 86, 0.2)',
+                                            'rgba(54, 162, 235, 0.2)',
+                                            'rgba(153, 102, 255, 0.2)',
+                                            'rgba(255, 159, 64, 0.2)'
+                                            // Add more colors if needed
+                                        ];
+            
+                                        const firstYearData = data.filter(student => student.admission_batch === '1');
+                                        const secondYearData = data.filter(student => student.admission_batch === '2');
+                                        const thirdYearData = data.filter(student => student.admission_batch === '3');
+            
+                                        const firstYearCountElement = document.getElementById('firstYearCount');
+                                        const secondYearCountElement = document.getElementById('secondYearCount');
+                                        const thirdYearCountElement = document.getElementById('thirdYearCount');
+            
+                                        const firstYearCount = firstYearData.length;
+                                        const secondYearCount = secondYearData.length;
+                                        const thirdYearCount = thirdYearData.length;
+            
+                                        const increment = Math.ceil(firstYearCount / 100);
+                                        const incrementSecondYear = Math.ceil(secondYearCount / 100);
+                                        const incrementThirdYear = Math.ceil(thirdYearCount / 100);
+            
+                                        let currentFirstYearCount = 0;
+                                        let currentSecondYearCount = 0;
+                                        let currentThirdYearCount = 0;
+            
+                                        const updateCount = () => {
+                                            currentFirstYearCount += increment;
+                                            currentSecondYearCount += increment;
+                                            currentThirdYearCount += increment;
+            
+                                            if (currentFirstYearCount >= firstYearCount) {
+                                                currentFirstYearCount = firstYearCount;
+                                                clearInterval(countInterval);
+                                            }
+                                            if (currentSecondYearCount >= secondYearCount) {
+                                                currentSecondYearCount = secondYearCount;
+                                            }
+                                            if (currentThirdYearCount >= thirdYearCount) {
+                                                currentThirdYearCount = thirdYearCount;
+                                            }
+            
+                                            firstYearCountElement.textContent = currentFirstYearCount;
+                                            secondYearCountElement.textContent = currentSecondYearCount;
+                                            thirdYearCountElement.textContent = currentThirdYearCount;
+                                        };
+                                        const countInterval = setInterval(updateCount, 50);
+                                        
+                                        firstYearCountElement.textContent = firstYearCount;
+                                        secondYearCountElement.textContent = secondYearCount;
+                                        thirdYearCountElement.textContent = thirdYearCount;
+            
+                                        // Process the data and populate classData object
+                                        data.forEach((student, index) => {
+                                            const className = student.admission_batch;
+                                            if (!classData[className]) {
+                                                classData[className] = 1;
+                                            } else {
+                                                classData[className]++;
+                                            }
+                                            const colorIndex = index % backgroundColors.length;
+                                            student.backgroundColor = backgroundColors[colorIndex];
+                                        });
+            
+                                        // Create the class chart
+                                        const classChartCanvas = document.getElementById('classChart').getContext('2d');
+                                        new Chart(classChartCanvas, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: Object.keys(classData), // Class names
+                                                datasets: [{
+                                                    label: 'Number of Students',
+                                                    data: Object.values(classData), // Number of students per class
+                                                    // backgroundColor: 'rgba(75, 192, 192, 0.2)', // Bar color
+                                                    backgroundColor: backgroundColors,
+                                                    // borderColor: 'rgba(75, 192, 192, 1)', // Border color
+                                                    borderColor: backgroundColors,
+                                                    borderWidth: 1,
+                                                }],
+                                            },
+                                            options: {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true,
+                                                    },
+                                                },
+                                                responsive: true,
+                                                maintainAspectRatio: false,
+                                                aspectRatio: 0.2,
+                                            },
+                                        });
+            
+                                        const totalStudents = Object.values(classData).reduce((total, count) => total + count, 0);
+                                        const countElement = document.getElementById('totalStudentsCount');
+            
+                                        let currentCount = 0;
+                                        const totalStudentsIncrement = Math.ceil(totalStudents / 100); // Adjust the speed of animation
+            
+                                        const updateTotalStudentsCount = () => {
+                                            currentCount += totalStudentsIncrement;
+                                            if (currentCount >= totalStudents) {
+                                                currentCount = totalStudents;
+                                                clearInterval(totalStudentsCountInterval);
+                                            }
+                                            countElement.textContent = currentCount;
+                                        };
+            
+                                        const totalStudentsCountInterval = setInterval(updateTotalStudentsCount, 50);
+                                    });
+                            }
+            
+                            // Call the function to update student counts when the page loads
+                            updateStudentCounts();
+                        </script>
+                        <script>
+                            // Fetch user data from the API endpoint
+                            fetch('/dashboard/api/user-count/')  // Replace with the actual API endpoint for user count
+                                .then(response => response.json())
+                                .then(data => {
+                                    // Update the "Total Users" count
+                                    const totalUsersCountElement = document.getElementById('totalUsersCount');
+                                    const totalUsers = data.total_users;  // Assuming the API response contains the user count
+                                    totalUsersCountElement.textContent = totalUsers;
+                                })
+                                .catch(error => {
+                                    console.error('Error fetching user count:', error);
+                                });
+                        </script>
+                    </div>
+                </div>
+                <footer>
+                    <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
+                </footer>
+            </body>
+            </html>

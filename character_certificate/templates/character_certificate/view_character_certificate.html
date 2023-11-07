@@ -65,7 +65,7 @@
                       इस विद्यालय के छात्र/छात्रा रहे हैं |
                       यह इस महाविद्यालय में कक्षा B A {{ admission_form.admission_batch}} Year के सत्र <input type="text" name="admission_year" value=" "> से <input type="text" name="exit_year" value=" ">
                       तक संस्थागत छात्र/छात्रा रहे हैं |
-                      इन्होने सत्र <input type="text" name="exam_year" value=" "> में इस संस्था से कक्षा BA <input type="text" name="exam_batch" value=" "> Year की परीक्षा <input type="text" name="exam_grade" value=" ">
+                      इन्होने सत्र <input type="text" name="exam_year" value=" " class="examtype"> में इस संस्था से कक्षा BA <input type="text" name="exam_batch" value=" "> Year की परीक्षा <input type="text" name="exam_grade" value=" " class="examtype">
                       श्रेष्ठी में उत्तीरण/अनुत्तीरण किया | जहाँ तक मुझे ज्ञात है इनका चरित्र उत्तम है|<br>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;मैं जीवन में हर दृष्टि से इनकी सफलता की कामना करता है |
                   </div>
@@ -96,6 +96,12 @@
         function printCertificate() {
             window.print(); // This will trigger the print dialog
         }
+        $( "input" ).change(function() {
+        this.style.width = ((this.value.length + 1) * 12) + "px";
+        });
+        $( "input.examtype" ).change(function() {
+        this.style.width = ((this.value.length + 1) * 8) + "px";
+        });
     </script>
 </body>
 </html>

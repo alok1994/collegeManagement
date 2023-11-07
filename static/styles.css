@@ -138,13 +138,18 @@ body {
     background-color: #f4f4f4;
 }
 
-header {
+header, footer {
     background-color: #008080;
     color: #fff;
     padding: 20px 10px;
     text-align: right;
 }
-header p {
+footer {
+    margin-bottom: 0px;
+    padding-right: 30px;
+    background-color: #3c8dbc !important;
+}
+header p, footer p {
     color: #fff;
     margin: 0;
     margin-bottom: 10px;
@@ -183,6 +188,7 @@ header a {
     padding: 20px;
     position: relative;
     left: 200px;
+    min-height: 557px;
 }
 
 h1 {
@@ -300,8 +306,9 @@ a.delete_btn {
     font-size: 12px;
 }
 
-a:hover{
-    color: #ffffff !important;
+.pagination a:hover{
+    color: #008080 !important;
+    font-weight: bold;
 }
 .trans_cer input {
     margin: 10px 0px;
@@ -404,6 +411,12 @@ a:hover{
         text-align: center;
     }
     @media print {
+        .trans_cer input {
+            background-color: #f4f4f4;
+            border: none;
+            padding: 0px;
+            text-align: center;
+        }
         .sidebar, button.print_btn, a.back_to_student, header, title{
            display:none !important;
         }
