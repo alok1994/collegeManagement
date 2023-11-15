@@ -156,7 +156,16 @@ header p, footer p {
 }
 canvas#classChart {
     /* width: 850px !important; */
-    height: 350px !important;
+    border: none;
+    outline: none;
+    height: 375px !important;
+    width: 640px !important;
+}
+
+canvas#semesterChart {
+    /* width: 850px !important; */
+    height: 389px !important;
+    width: 434px !important;
 }
 
 header a {
@@ -393,8 +402,47 @@ a.delete_btn {
         font-size: 18px;
         border-radius: 10px;
     }
+
+    .BA-First-Year, #BA-First-box {
+        margin: 30px 0px;
+        padding: 40px;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 0.5px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+
+    .BA-Second-Year, #BA-Second-box {
+        margin: 30px 0px;
+        padding: 40px;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 0.5px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+
+    .BA-Third-Year, #BA-Third-box {
+        margin: 30px 0px;
+        padding: 40px;
+        text-align: center;
+        color: #fff;
+        letter-spacing: 0.5px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
     div#user-count-box {
         background-color: #3c8dbc;
+    }
+    div#BA-First-box {
+        background-color: rgb(148, 240, 211);
+    }
+    div#BA-Second-box {
+        background-color: rgb(240, 118, 179);
+    }
+    div#BA-Third-box {
+        background-color: #00a65a;
     }
     .student-count-box {
         background-color: #d9534f;
@@ -409,6 +457,10 @@ a.delete_btn {
         color: green;
         margin-top: 20px;
         text-align: center;
+    }
+    .college-name {
+        font-size: 60px;
+
     }
     @media print {
         .trans_cer input {

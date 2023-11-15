@@ -21,7 +21,18 @@ def dashboard(request):
 def get_user_count(request):
     # Retrieve the user count from the User model
     user_count = User.objects.count()
-    print(user_count)
+    
     # Create a JSON response with the user count
     response_data = {'total_users': user_count}
+    return JsonResponse(response_data)
+
+
+def get_semester_wise_student_data(request):
+    # Retrieve the semester-wise student count
+    semester_counts = AdmissionForm.objects.values('current_semester').annotate(count=Count('id'))
+
+    # Create a JSON response with the semester-wise student count
+    response_data = {
+        'semester_counts': list(semester_counts),
+    }
     return JsonResponse(response_data)
