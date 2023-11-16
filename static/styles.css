@@ -1,3 +1,7 @@
+body{
+    background-color: #ebf3ff !important;
+    font-family: 'Nunito', sans-serif !important;
+}
 form.admission_form {
     max-width: 855px;
     margin: 0 auto;
@@ -139,15 +143,12 @@ body {
 }
 
 header, footer {
-    background-color: #008080;
-    color: #fff;
     padding: 20px 10px;
     text-align: right;
 }
 footer {
     margin-bottom: 0px;
     padding-right: 30px;
-    background-color: #3c8dbc !important;
 }
 header p, footer p {
     color: #fff;
@@ -156,10 +157,18 @@ header p, footer p {
 }
 canvas#classChart {
     /* width: 850px !important; */
-    border: none;
-    outline: none;
-    height: 375px !important;
-    width: 640px !important;
+
+    height: 389px !important;
+    width: 470px !important;
+}
+
+.content-header h1 {
+    font-size: 35px;
+    font-weight: 700;
+    color: #25396f;
+    text-align: left;
+    margin-bottom: 30px;
+    margin-left: 15px;
 }
 
 canvas#semesterChart {
@@ -167,9 +176,61 @@ canvas#semesterChart {
     height: 389px !important;
     width: 434px !important;
 }
+a.signout_option i {
+    font-size: 30px;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+}
+.card .card-body {
+    padding: 1.4rem 1.7rem;
+    background-color: #ffffff;
+    margin-bottom: 30px;
+}
+.align-items-center {
+    align-items: center !important;
+}
+.card i {
+    font-size: 35px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.card i.fa-home {
+    color: #081A51 !important;
+}
+.card i.fa-user {
+    color: #28a745 !important
+}
+.card i.fa-users {
+    color: #17a2b8 !important
+}
+.card i.second_user {
+    color: #ffc107 !important
+}
 
+.card i.third_user {
+    color: #6777ef !important
+}
+h5{
+    font-size: 20px !important;
+}
+p{
+    color: #7c8db5!important;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    color: #25396f !important;
+    font-weight: bold!important;
+    line-height: 1.2!important;
+    margin-bottom: 0.5rem!important;
+    margin-top: 0!important;
+}
 header a {
-    color: #fff;
     text-decoration: none;
     margin-right: 10px;
 }
@@ -182,8 +243,10 @@ header a {
 }
 
 .sidebar {
-    width: 15%; /* Adjust the width as needed */
-    background-color: #222d32; /* Sidebar background color */
+    width: 17%; /* Adjust the width as needed */
+    background: #081A51;
+    box-shadow: 0 0 50px rgba(0, 0, 0, .1);
+    z-index: 9999;
     color: #fff;
     padding: 20px;
     position: fixed; /* Fixed position */
@@ -192,11 +255,32 @@ header a {
     height: 100%; /* Make it full height */
 }
 
+ul.dashboard_list {
+    margin: 36px 0;
+    padding: 0 20px;
+    transition: all .3s ease;
+}
+ul.dashboard_list li a {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 12px 16px 12px 12px;
+    transition: all .3s ease;
+    border-radius: 10px;
+    margin: 4px 0;
+    white-space: nowrap;
+    text-decoration: none;
+}
+ul.dashboard_list li a.active,  ul.dashboard_list li a:hover{
+    background: #1B2B65;
+    color: #ffffff;
+}
 .content {
-    width: 80%; /* Adjust the width as needed */
+    width: 100%; /* Adjust the width as needed */
     padding: 20px;
     position: relative;
-    left: 200px;
+    left: 100px;
     min-height: 557px;
 }
 
@@ -210,8 +294,8 @@ ul {
 }
 ul.dashboard_list li {
     padding: 14px 0px;
-    border-bottom: 1px solid #333;
 }
+
 ul li a {
     margin-bottom: 10px;
     text-decoration: none;
@@ -450,8 +534,8 @@ a.delete_btn {
     .submit_admission {
         margin: 20px 0px;
     }
-    .college_logo {
-        float: left;
+    .school_logo {
+        text-align: center;
     }
     .message_text {
         color: green;
@@ -462,6 +546,7 @@ a.delete_btn {
         font-size: 60px;
 
     }
+    
     @media print {
         .trans_cer input {
             background-color: #f4f4f4;

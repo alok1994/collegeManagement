@@ -9,70 +9,117 @@
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <script src="/static/jquery.min.js"></script>
     <script src="/static/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
+        <a href="{% url 'logout' %}?next=/loginapp/logout/" class="signout_option"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
         
     </header>
     <div class="container">
-        <div class="sidebar">
-            <ul class="dashboard_list">
-                <li><a href="/dashboard"><i class="fa fa-school" aria-hidden="true"></i><b> College Management</b></a></li>
-                <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i> Dashboard</a></li>
-                <li><a href="{% url 'admission_form' %}"><i class="fa fa-wpforms" aria-hidden="true"></i> Admission Form</a></li>
-                <li><a href="{% url 'student_list' %}"><i class="fa fa-user"></i> Student List</a></li>
-                <li><a href="{% url 'first_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> First Year</a></li>
-                <li><a href="{% url 'second_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Second Year</a></li>
-                <li><a href="{% url 'third_year' %}"><i class="fa fa-calendar" aria-hidden="true"></i> Third Year</a></li>
-                <li><a href="{% url 'fee_detail' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Management</a></li>
-                <li><a href="{% url 'student_list_details' %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
-                <li><a href="{% url 'student_list_details_transfer' %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
-                <li><a href="{% url 'fee_structure' %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Structure</a></li>
-                <li><a href="{% url 'send_messages' %}"><i class="fa fa-bell" aria-hidden="true"></i>Send Notification</a></li>
-            </ul>
-        </div>
-        <div class="content">
-            <h1 class="college-name">चन्द्रिका प्रसाद महाविद्यालय</h1>
-            <p class="address_college">
-                ग्राम व पोस्ट : - रामपुर बरहन (खानगी), वि.ख - दुदही (कुशीनगर)
-            </p>
-            <div class="col-sm-6">
-            <div class="student-count-box"> 
-                Total Students: <span id="totalStudentsCount">X</span>
-            </div>
-            </div>
-            <div class="col-sm-6">
-            <div id="user-count-box" class="user-count-box">
-                Total Users: <span id="totalUsersCount">X</span>
-            </div>
-        </div>
-
-        <div class="col-sm-6">
-            <div id="BA-First-box" class="BA-First-Year"> 
-                BA 1st Year Students: <span id="firstYearCount">X</span>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div id="BA-Second-box" class="BA-Second-Year"> 
-                BA 2nd Year Students: <span id="secondYearCount">X</span>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div id="BA-Third-box" class="BA-Third-Year"> 
-                BA 3rd Year Students: <span id="thirdYearCount">X</span>
-            </div>
-        </div>
+        {% include 'sidebar.html' %}
         
-        <div>
-            <canvas id="semesterChart" height="300" width="300" style="display: block; box-sizing: border-box; height: 200px; width: 100px; border: none; outline: none;"></canvas>
+        <div class="content">
+            <div class="content-header">
+				<h1>Dashboard</h1>
+				<p></p>
+			</div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>Total Students: </p>
+                                <h5><span id="totalStudentsCount">X</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <p> Total Users:  </p>
+                                <h5><span id="totalUsersCount">X</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>BA 1st Year Students:  </p>
+                                <h5><span id="firstYearCount">X</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <i class="fa fa-users second_user" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>BA 2nd Year Students: </p>
+                                <h5> <span id="secondYearCount">X</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4 d-flex align-items-center">
+                                <i class="fa fa-users third_user" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-sm-8">
+                                <p>BA 3rd Year Students: </p>
+                                <h5><span id="thirdYearCount">X</span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="col-sm-12 col-md-6">
+            <div class="card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                <canvas id="semesterChart" height="300" width="300" style="display: block; box-sizing: border-box; height: 200px; width: 100px; border: none; outline: none;"></canvas>
+                </div>
+
+            </div>
         </div>
             <!-- Your content goes here -->
 
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                        <div>
+                        <div class="col-sm-12 col-md-6">
+                            <div class="card">
+                                <div class="card-header"></div>
+                               <div class="card-body">
                             <canvas id="classChart" height="200" width="100" style="height: 200px; width: 100px; border: none; outline: none;"></canvas>
+                            </div>
+                            </div>
                         </div>
                         <script>
                             // Function to update the student counts
@@ -155,7 +202,7 @@
                                         // Create the class chart
                                         const classChartCanvas = document.getElementById('classChart').getContext('2d');
                                         new Chart(classChartCanvas, {
-                                            type: 'pie',
+                                            type: 'bar',
                                             data: {
                                                 labels: Object.keys(classData), // Class names
                                                 datasets: [{
@@ -244,7 +291,7 @@
 
                                         // Create/update the semester-wise student distribution chart dynamically
                                         new Chart(semesterChartCanvas, {
-                                            type: 'bar',
+                                            type: 'pie',
                                             data: {
                                                 labels: semesterNames, // Semester names
                                                 datasets: [{
