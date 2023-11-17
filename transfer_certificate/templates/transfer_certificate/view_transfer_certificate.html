@@ -13,10 +13,8 @@
         <link rel="stylesheet" type="text/css" href="/static/tces.css">
     </head>
 <body>
-    <header>
-        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>    
-    </header>
+  {% include 'headers.html' %}
+  
     <div class="container-fluid charac_cert">
       {% include 'sidebar.html' %}
       

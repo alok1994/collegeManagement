@@ -9,17 +9,16 @@
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <script src="/static/jquery.min.js"></script>
     <script src="/static/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
-        
-    </header>
-    <div class="container-fluid">
+    
+    
+    <div class="container-fluid full-width">
         {% include 'sidebar.html' %}
         
-        <div class="content">
+        <div class="content col-sm-10">
+            {% include 'headers.html' %}
             <h1 class="student_heading update_heading">Update Student Details</h1>
     
             <form method="post" enctype="multipart/form-data" class="admission_form">

@@ -10,18 +10,7 @@
   <script src="/static/bootstrap.min.js"></script>
 </head>
 <body>
-  {% load custom_filters %}
-  <header>
-    Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-  </header>
+  {% include 'headers.html' %}
   
   <div class="container-fluid">
     {% include 'sidebar.html' %}

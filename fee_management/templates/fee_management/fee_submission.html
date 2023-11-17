@@ -9,24 +9,16 @@
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <script src="/static/jquery.min.js"></script>
     <script src="/static/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-      </header>
+  
       
-    <div class="container-fluid">
+    <div class="container-fluid full-width">
         {% include 'sidebar.html' %}
         
-    <div class="content">
+    <div class="content col-sm-10">
+        {% include 'headers.html' %}
         <div class="center-text">
             <h3> चन्द्रिका प्रसाद महाविद्यालय</h3> 
             <p>ग्राम व पोस्ट : - रामपुर बरहन (खानगी), वि.ख - दुदही (कुशीनगर)</p>
@@ -102,7 +94,9 @@
         </form>
        </div>
        <footer>
-        <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
+        <div class="col-sm-12">
+            <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
+        </div>
     </footer>
     </body>
 </html>

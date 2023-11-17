@@ -6,17 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="/static/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     </head>
 <body>
     <header>
-        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
-        
-    </header>
-    <div class="container">
+    
+      
+    <div class="container-fluid full-width">
       {% include 'sidebar.html' %}
       
-        <div class="content">
+        <div class="content col-sm-10">
+          {% include 'headers.html' %}
             <h1>Fee Structure</h1>
             <table class="fee-structure">
               <thead>
@@ -50,7 +50,9 @@
         </div>
     </div>
     <footer>
-      <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
-  </footer>    
+      <div class="col-sm-12">
+          <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
+      </div>
+  </footer>   
 </body>
 </html>

@@ -26,10 +26,7 @@
     </style>
 </head>
 <body>
-    <header>
-        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>    
-    </header>
+    {% include 'headers.html' %}
 
     <div class="container-fluid">
         {% include 'sidebar.html' %}

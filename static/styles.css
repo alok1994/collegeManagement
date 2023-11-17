@@ -3,12 +3,13 @@ body{
     font-family: 'Nunito', sans-serif !important;
 }
 form.admission_form {
-    max-width: 855px;
+
     margin: 0 auto;
     padding: 20px;
-    border: 2px solid #008080;
-    background-color: #d0e7e8;
+    border: 2px solid #fff;
+    background-color: #fff;
     border-radius: 5px;
+    margin-top: 30px;
 }
 
 .form-group {
@@ -27,8 +28,7 @@ th, td {
 }
  
 label {
-    display: block;
-    font-weight: bold;
+    color: #25396f;
 }
 
 /* Style for input fields */
@@ -43,6 +43,7 @@ select {
     border: 1px solid #ccc;
     border-radius: 3px;
     font-size: 16px;
+    background-color: #dce7f1;
 }
 
 .form-group textarea {
@@ -50,7 +51,7 @@ select {
 }
 /* Style for the submit button */
 .submit-button {
-    background-color: #007bff;
+    background-color: #081A51;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -115,16 +116,6 @@ h2.admission_form {
     text-align: center;
 }
 
-.sidebar {
-    width: 20%; /* Adjust the width as needed */
-    background-color: #333; /* Sidebar background color */
-    color: #fff;
-    padding: 20px;
-    position: fixed; /* Fixed position */
-    top: 0; /* Stick to the top of the viewport */
-    left: 0; /* Stick to the left side */
-    height: 100%; /* Make it full height */
-}
 ul {
     list-style-type: none;
     padding: 0;
@@ -154,12 +145,14 @@ header p, footer p {
     color: #fff;
     margin: 0;
     margin-bottom: 10px;
+    margin-top: 20px;
+
 }
 canvas#classChart {
     /* width: 850px !important; */
 
     height: 389px !important;
-    width: 470px !important;
+    width: 550px !important;
 }
 
 .content-header h1 {
@@ -174,7 +167,7 @@ canvas#classChart {
 canvas#semesterChart {
     /* width: 850px !important; */
     height: 389px !important;
-    width: 434px !important;
+    width: 550px !important;
 }
 a.signout_option i {
     font-size: 30px;
@@ -243,7 +236,7 @@ header a {
 }
 
 .sidebar {
-    width: 17%; /* Adjust the width as needed */
+    /* width: 17%; Adjust the width as needed */
     background: #081A51;
     box-shadow: 0 0 50px rgba(0, 0, 0, .1);
     z-index: 9999;
@@ -254,7 +247,9 @@ header a {
     left: 0; /* Stick to the left side */
     height: 100%; /* Make it full height */
 }
-
+.container-fluid.full-width {
+    padding: 0;
+}
 ul.dashboard_list {
     margin: 36px 0;
     padding: 0 20px;
@@ -272,17 +267,18 @@ ul.dashboard_list li a {
     white-space: nowrap;
     text-decoration: none;
 }
+ 
 ul.dashboard_list li a.active,  ul.dashboard_list li a:hover{
     background: #1B2B65;
     color: #ffffff;
 }
-.content {
-    width: 100%; /* Adjust the width as needed */
+/* .content {
+    width: 100%; 
     padding: 20px;
     position: relative;
     left: 100px;
     min-height: 557px;
-}
+} */
 
 h1 {
     text-align: center;
@@ -312,16 +308,17 @@ ul.dashboard_list li a i {
     padding-right: 20px;
 }
 .apply_filter {
-    background-color: #008080;
-    padding: 7px 10px;
+    background-color: #081A51;
+    padding: 7px 30px;
     color: #fff;
-    border: 1px solid #008080;
+    border: 1px solid #081A51;
     border-radius: 25px;
     position: relative;
     top: 30px;
 }
 table.student_list_tab {
-    margin-left: 50px;
+    background-color: #fff;
+    padding: 10px;
 }
 table.student_list_tab tr:nth-child(even) {
     background-color: #f9f9f9;
@@ -365,42 +362,31 @@ table.student_list_tab th, table.student_list_tab td {
     position: relative;
     z-index: 1;
 }
-.student_heading:before {
-    content: "";
-    position: absolute;
-    left: 40%;
-    bottom: 0;
-    height: 7px;
-    width: 20%;
-    border-bottom: 2px solid #008080;
-}
+
 .student_heading.update_heading {
     width: 40%;
 }
 
 .pagination {
-    text-align: right;
-    margin-right: 70px !important;
-    display: block !important;
+    margin-right: 20px !important;
+    float: right;
 
 }
 span.current-page {
-    color: #008080;
+    color: #081A51;
     font-weight: bold;
 }
 form.admission_filter {
-    margin-left: 38px;
-    margin: 0px 0px 18px 38px;
+    margin: 30px 0px 30px 0px;
     display: inline-block;
-    width: 100%;
 }
 a.delete_btn {
-    padding: 3px;
+    padding: 5px;
     font-size: 12px;
 }
 
 .pagination a:hover{
-    color: #008080 !important;
+    color: #081A51 !important;
     font-weight: bold;
 }
 .trans_cer input {
@@ -410,7 +396,7 @@ a.delete_btn {
 }
 
 .print_btn {
-    background-color: #008080;
+    background-color: #081A51;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -425,11 +411,11 @@ a.delete_btn {
         text-align: center;
     }
     .complete_form {
-        border: 2px solid #121111;
         padding: 20px;
         margin: 20px;
         width: 80%;
         margin: 0 auto;
+        background-color: #fff;
     }
     .address_college {
         text-align: center;
@@ -439,7 +425,7 @@ a.delete_btn {
         position: relative;
         float: right;
         right: 16%;
-        background-color: #008080;
+        background-color: #081A51;
         color: #fff;
         border-radius: 24px;
         letter-spacing: 0.5px;
@@ -451,12 +437,15 @@ a.delete_btn {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: #ceefef;
+        background-color: #1B2B65;
         border: 1px solid #171718;
         padding: 35px;
         z-index: 1000;
         text-align: center;
         border-radius: 5px
+    }
+    p#confirmationMessage {
+        color: #fff !important;
     }
     /* Style for the fee structure table */
     table.fee-structure {

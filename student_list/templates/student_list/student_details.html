@@ -8,19 +8,18 @@
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <script src="/static/jquery.min.js"></script>
     <script src="/static/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
     <!-- <a href="{% url 'dashboardpage' %}">Dashboard</a>
     <a href="{% url 'logout' %}?next=/loginapp/logout/" style="float: right;">Logout</a> -->
 </head>
 <body>
-    <header>
-        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
-        
-    </header>
-    <div class="container-fluid">
-      {% include 'sidebar.html' %}>
+  
+    <div class="container-fluid full-width">
+      {% include 'sidebar.html' %}
 
-    <div class="content">
+    <div class="content col-sm-10">
+      {% include 'headers.html' %}
+  
     <div class="complete_form">
         <h1 class="chandrika_head">चन्द्रिका प्रसाद महाविद्यालय</h1>
         <p class="address_college">ग्राम व पोस्ट : - रामपुर बरहन (खानगी), वि.ख - दुदही (कुशीनगर)</p>

@@ -11,23 +11,16 @@
     <link rel="stylesheet" href="/static/bootstrap.min.css">
     <script src="/static/jquery.min.js"></script>
     <script src="/static/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-    </header>
-    <div class="container-fluid">
+    
+    
+    <div class="container-fluid full-width">
         {% include 'sidebar.html' %}
         
-        <div class="content">
+        <div class="content col-sm-10">
+            {% include 'headers.html' %}
             <h1 class="student_heading">Student Fee Details</h1>
             <form method="get" class="admission_filter">
                 <div class="col-sm-8 year_admin">
@@ -90,8 +83,10 @@
         </div>
     </div>
     <footer>
-        <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
-    </footer> 
+        <div class="col-sm-12">
+            <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
+        </div>
+    </footer>
 </body>
 </html>
 

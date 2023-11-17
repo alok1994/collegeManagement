@@ -9,10 +9,8 @@
     <script src="/static/bootstrap.min.js"></script>
 </head>
 <body>
-    <header>
-        Welcome {{ user.username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="{% url 'logout' %}?next=/loginapp/logout/">Logout</a>
-    </header>
+    {% include 'headers.html' %}
+    
     <div class="container">
         {% include 'sidebar.html' %}
         
