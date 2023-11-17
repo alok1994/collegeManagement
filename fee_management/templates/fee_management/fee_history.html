@@ -16,7 +16,11 @@
     {% include 'sidebar.html' %}
     
     <div class="content">
-      <h2>Fee History {{ student.first_name }} {{ student.middle_name}} {{ student.last_name }}</h2>
+      <div class="content-header">
+				<h1>Fee History {{ student.first_name }} {{ student.middle_name}} {{ student.last_name }}</h1>
+				<p></p>
+      </div>
+      <!-- <h2>Fee History {{ student.first_name }} {{ student.middle_name}} {{ student.last_name }}</h2> -->
       <div id="feeHistoryContainer">  </div>
       
       </div>

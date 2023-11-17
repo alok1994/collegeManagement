@@ -19,7 +19,10 @@
         
         <div class="content col-sm-10">
             {% include 'headers.html' %}
-            <h1 class="student_heading">2nd Year Students List</h1>
+            <div class="content-header">
+				<h1>2nd Year</h1>
+				<p></p>
+            </div>
             <form method="get" class="admission_filter">
                 <div class="col-sm-8 year_admin">{{ year_filter_form.as_p }}</div>
                 <!-- {{ class_filter_form.as_p }} -->
