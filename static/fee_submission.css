@@ -20,7 +20,17 @@
 .section {
     margin-bottom: 20px;
 }
-
+.receiver-signature{
+    float: right !important;
+    text-align: right;
+}
+.student-signature{
+    float:left;
+}
+.receiver-signature.col-sm-6, .student-signature.col-sm-6 {
+    padding: 0px;
+    margin-top: 30px;
+}
 .table {
     width: 95%;
     border-collapse: inherit;
