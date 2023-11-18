@@ -7,8 +7,9 @@
     align-items: flex-start;
     background-color: #fff;
 }
-.feereceipt {
-    margin: 30px 30px 30px 50px;
+.static-box.trans_cer {
+    background: white;
+    padding: 20px;
 }
 .header {
     font-size: 20px;
