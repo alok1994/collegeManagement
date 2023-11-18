@@ -41,7 +41,7 @@
                     </div>
                     <div class="clearfix"></div>
                     <div class="col-sm-6">
-                        <p><b>Father Name:</b> {{ student.father_name }}</p>
+                        <p><b>Mother Name:</b> {{ student.mother_name }}</p>
                     </div>
                     <div class="col-sm-6">
                         <p><b>Class:</b> BA {{ student.admission_batch }} Year</p>
@@ -51,12 +51,12 @@
                         <p><b>Date of Payment:</b> {{ fee.payment_date }}</p>
                     </div>
                     <div class="col-sm-6">
-                        <p><b>Fee Month:</b> {{ fee.fee_for_month }}</p>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="col-sm-6">
                         <p><b>Receipt Number:</b> {{ fee.receipt_number }}</p>
                     </div>
+                    <div class="clearfix"></div>
+                    <!-- <div class="col-sm-6">
+                        <p><b>Receipt Number:</b> {{ fee.receipt_number }}</p>
+                    </div> -->
         
                 </div>
                 <table class="student_list_tab" style="margin-left: 0px;">
@@ -112,11 +112,11 @@
                 </div>
                 <div class="footer">
                     <div class="signature-block">
-                        <div class="student-signature">
+                        <div class="student-signature col-sm-6">
                             <p>Student's Signature</p>
                             <!-- Add space for the student's signature -->
                         </div>
-                        <div class="receiver-signature">
+                        <div class="receiver-signature col-sm-6">
                             <p>Receiver's Signature</p>
                             <!-- Add space for the receiver's signature -->
                         </div>

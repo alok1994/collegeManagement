@@ -165,6 +165,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
-TWILIO_ACCOUNT_SID = 'Adfsfs'
-TWILIO_AUTH_TOKEN = 'fsfsfsd'
+TWILIO_ACCOUNT_SID = 'ACb006f2263d5d394d905e53b045aca49f'
+TWILIO_AUTH_TOKEN = 'f7af6409b2dc988fa582ee9c2c8f55d8'

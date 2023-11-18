@@ -64,7 +64,7 @@ def fee_submission(request, student_id):
         try:
             message = client.messages.create(
                 to=formatted_to_number,
-                from_='33430',  # Replace with your Twilio number
+                from_='+13348304110',  # Replace with your Twilio number
                 body=message
             )
         except Exception as e:
@@ -97,6 +97,8 @@ def fee_submission(request, student_id):
 
             fee.semester = student.current_semester
 
+            fee.total_amount_in_words = num2words(total_paid_amount, lang='en_IN').title()
+            
             # Query the database to get the fee history for the selected student
             fee_history = Fee.objects.filter(student=student).order_by('-payment_date')
 
@@ -206,7 +208,7 @@ def send_message(request, student_id, remaining_amount):
     
         message = client.messages.create(
             to=formatted_to_number,
-            from_='3432',
+            from_='+13348304110',
             body=message
         )
         return HttpResponse("Message sent successfully!")
