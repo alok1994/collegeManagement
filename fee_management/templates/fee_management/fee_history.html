@@ -8,16 +8,19 @@
   <link rel="stylesheet" href="/static/bootstrap.min.css">
   <script src="/static/jquery.min.js"></script>
   <script src="/static/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 </head>
 <body>
-  {% include 'headers.html' %}
+ 
   
-  <div class="container-fluid">
+  <div class="container-fluid full-width">
     {% include 'sidebar.html' %}
     
-    <div class="content">
+    <div class="content col-sm-10">
+      {% include 'headers.html' %}
       <div class="content-header">
-				<h1>Fee History {{ student.first_name }} {{ student.middle_name}} {{ student.last_name }}</h1>
+				<h1>Fee History <i class="fa fa-angle-right"></i> <span class="student_name">{{ student.first_name }} {{ student.middle_name}} {{ student.last_name }}</span></h1>
 				<p></p>
       </div>
       <!-- <h2>Fee History {{ student.first_name }} {{ student.middle_name}} {{ student.last_name }}</h2> -->
@@ -41,11 +44,14 @@
           {% endif %}
         </span>
       </div>
-      </div>
+      <footer>
+        <div class="col-sm-12">
+            <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
+        </div>
+    </footer>
+</div>
 
-<footer>
-  <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
-</footer>
+
 
 <script>
   $(document).ready(function () {
@@ -84,7 +90,7 @@
         currentTable = $("<table class='student_list_tab' border='1'></table>");
         currentTable.append("<thead><tr><th>Payment Date</th><th>Registration Fee</th><th>Tuition Fee</th><th>Exam Fee</th><th>Miscellaneous Fee</th><th>Late Fee</th><th>Discount Fee</th><th>Total Semester Fee</th><th>Total Paid Amount</th><th>Remaining Amount</th><th>Actions</th></tr></thead>");
         currentTable.append("<tbody>");
-        feeHistoryContainer.append("<h3>Semester " + feeEntry.semester + "</h3>");
+        feeHistoryContainer.append("<h3 class='semester'>Semester " + feeEntry.semester + "</h3>");
         feeHistoryContainer.append(currentTable);
         currentSemester = feeEntry.semester;
       }

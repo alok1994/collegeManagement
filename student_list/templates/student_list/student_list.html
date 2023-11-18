@@ -23,9 +23,9 @@
             </div>
             <form method="post" enctype="multipart/form-data" class="admission_filter">
                 {% csrf_token %}
-                <div class="col-sm-5 year_admin">{{ year_filter_form.as_p }}</div>
-                <div class="col-sm-5 admission_batch">{{ class_filter_form.as_p }}</div>
-                <div class="col-sm-2"><button type="submit" class="apply_filter">Apply Filters</button></div>
+                <div class="col-sm-4 year_admin">{{ year_filter_form.as_p }}</div>
+                <div class="col-sm-4 admission_batch">{{ class_filter_form.as_p }}</div>
+                <div class="col-sm-4"><button type="submit" class="apply_filter">Apply Filters</button></div>
             </form>
             
             <table class="student_list_tab">
@@ -96,6 +96,11 @@
                 {% endif %}
             </span>
         </div>
+        <footer>
+            <div class="col-sm-12">
+                <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
+            </div>
+        </footer> 
     </div>
     <script>
         document.querySelectorAll('.delete-student').forEach(button => {
@@ -119,10 +124,6 @@
             });
         });
     </script>
-    <footer>
-        <div class="col-sm-12">
-            <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
-        </div>
-    </footer> 
+   
 </body>
 </html>

@@ -33,7 +33,7 @@ def fee_detail(request):
 
     page = request.GET.get('page')
     # Display 10 students per page, you can adjust this number as needed
-    paginator = Paginator(class_students, 20)  
+    paginator = Paginator(class_students, 24)  
 
     class_students = paginator.get_page(page)
 

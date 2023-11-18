@@ -9,17 +9,18 @@
     <script src="/static/bootstrap.min.js"></script>
 </head>
 <body>
-    {% include 'headers.html' %}
     
-    <div class="container">
+    
+    <div class="container-fluid full-width">
         {% include 'sidebar.html' %}
         
-        <div class="content">
+        <div class="content col-sm-10">
+            {% include 'headers.html' %}
             <div class="content-header">
                 <h1>Update {{ semester }} Fee </h1>
                 <p></p>
               </div>
-            <form method="post">
+            <form method="post" class="admission_form">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="save_btn"><i class="fa fa-edit"></i> Save Changes</button>

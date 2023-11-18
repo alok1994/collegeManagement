@@ -30,7 +30,7 @@ def student_list(request):
 
     # Paginate the student list
     page = request.GET.get('page')
-    paginator = Paginator(students, 20)  # Display 10 students per page, you can adjust this number as needed
+    paginator = Paginator(students, 12)  # Display 10 students per page, you can adjust this number as needed
 
     students = paginator.get_page(page)
 
@@ -79,7 +79,7 @@ def first_year(request):
 
     # Paginate the class 6 student list
     page = request.GET.get('page')
-    paginator = Paginator(first_year_students, 20)  # Display 10 students per page, you can adjust this number as needed
+    paginator = Paginator(first_year_students, 12)  # Display 10 students per page, you can adjust this number as needed
 
     first_year_students = paginator.get_page(page)
 
@@ -104,7 +104,7 @@ def second_year(request):
 
     # Paginate the class 6 student list
     page = request.GET.get('page')
-    paginator = Paginator(second_year_students, 20)  # Display 10 students per page, you can adjust this number as needed
+    paginator = Paginator(second_year_students, 12)  # Display 10 students per page, you can adjust this number as needed
 
     second_year_students = paginator.get_page(page)
 
@@ -129,7 +129,7 @@ def third_year(request):
 
     # Paginate the class 6 student list
     page = request.GET.get('page')
-    paginator = Paginator(third_year_students, 20)  # Display 10 students per page, you can adjust this number as needed
+    paginator = Paginator(third_year_students, 12)  # Display 10 students per page, you can adjust this number as needed
 
     third_year_students = paginator.get_page(page)
 

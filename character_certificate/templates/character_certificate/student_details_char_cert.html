@@ -13,12 +13,12 @@
     <script src="/static/bootstrap.min.js"></script>
 </head>
 <body>
-    {% include 'headers.html' %}
     
-    <div class="container-fluid">
+    <div class="container-fluid full-width">
         {% include 'sidebar.html' %}
         
-        <div class="content">
+        <div class="content col-sm-10">
+            {% include 'headers.html' %}
             <div class="content-header">
 				<h1>Student List Details</h1>
 				<p></p>
@@ -65,7 +65,7 @@
         <p>No students found.</p>
         {% endif %}
        
-    </div>
+        </div>
     <div class="pagination">
         <span class="step-links">
             {% if class_students.has_previous %}
@@ -81,10 +81,13 @@
             {% endif %}
         </span>
     </div>
-    </div>
     <footer>
-        <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
-    </footer>
+        <div class="col-sm-12">
+            <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
+        </div>
+    </footer>  
+    </div>
+    
     <!-- Filter dropdown for selecting a class -->
     </body>
 </html>

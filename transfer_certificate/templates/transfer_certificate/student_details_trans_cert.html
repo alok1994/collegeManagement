@@ -26,12 +26,13 @@
     </style>
 </head>
 <body>
-    {% include 'headers.html' %}
+   
 
-    <div class="container-fluid">
+    <div class="container-fluid full-width">
         {% include 'sidebar.html' %}
         
-        <div class="content">
+        <div class="content col-sm-10">
+            {% include 'headers.html' %}
             <div class="content-header">
                 <h1>TC Student List Details</h1>
                 <p></p>
@@ -97,10 +98,12 @@
                 {% endif %}
             </span>
         </div>
-        
+        <footer>
+            <div class="col-sm-12">
+                <p style="text-align: right;">© 2023 A2K Info Tech</p>
+            </div>
+        </footer>
     </div>
-    <footer>
-        <p style="text-align: right;">&copy; 2023 A2K Info Tech</p>
-    </footer>
+   
 </body>
 </html>

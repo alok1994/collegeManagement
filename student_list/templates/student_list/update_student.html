@@ -21,14 +21,171 @@
             {% include 'headers.html' %}
             <h1 class="student_heading update_heading">Update Student Details</h1>
     
-            <form method="post" enctype="multipart/form-data" class="admission_form">
+            <!-- <form method="post" enctype="multipart/form-data" class="admission_form">
                 {% csrf_token %}
-                {{ form.as_p }} <!-- Display the form fields as paragraphs -->
+                {{ form.as_p }} 
                 <div class="col-sm-12 submit_admission">
                     <button type="submit" class="submit-button">Update</button>
                 </div>
                 <div class="clearfix"></div>
-                <!-- <button type="submit">Update</button> -->
+              
+            </form> -->
+
+            <form method="POST" enctype="multipart/form-data" class="admission_form">
+                {% csrf_token %}
+                <div class="form-group-first-name col-sm-4">
+                    <label for="first_name">First Name:</label>
+                    {{ form.first_name }}
+                </div>
+
+                <div class="form-group-middle-name col-sm-4">
+                    <label for="middle_name">Middle Name:</label>
+                    {{ form.middle_name }}
+                </div>
+                
+                <div class="form-group-last-name col-sm-4">
+                    <label for="last_name">Last Name:</label>
+                    {{ form.last_name }}
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group-father-name col-sm-4">
+                    <label for="father_name">Father's Name:</label>
+                    {{ form.father_name }}
+                </div>
+               
+                <div class="form-group-mother-name col-sm-4">
+                    <label for="mother_name">Mother's Name:</label>
+                    {{ form.mother_name }}
+                </div>
+
+                <div class="form-group-date-of-birth col-sm-4">
+                    <label for="date_of_birth">Date of Birth:</label>
+                    {{ form.date_of_birth }}
+                </div>
+                <div class="clearfix"></div>
+                
+                <div class="form-group-aadhar-number col-sm-4">
+                    <label for="aadhar_number">Aadhar Number:</label>
+                    {{ form.aadhar_number }}
+                </div>
+
+                <div class="form-group-mobile-number col-sm-4">
+                    <label for="mobile_number">Mobile Number:</label>
+                    {{ form.mobile_number }}
+                </div>
+                
+                <div class="form-group-caste col-sm-4">
+                    <label for="caste">Caste:</label>
+                    {{ form.caste }}
+                </div>
+                <div class="clearfix"></div>
+                
+                <div class="form-group-admission-batch col-sm-4">
+                    <label for="admission_batch">Admission Batch:</label>
+                    {{ form.admission_batch }}
+                </div>
+                
+            
+                <div class="form-group col-sm-4">
+                    <label for="photo">Photo:</label>
+                    {{ form.photo }}
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="address">Current Address:</label>
+                    {{ form.address }}
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="form-group col-sm-4">
+                    <label for="dist">District:</label>
+                    {{ form.dist }}
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="pin_code">Pin code:</label>
+                    {{ form.pin_code }}
+                </div>
+
+               
+                <div class="form-group col-sm-4">
+                    <label for="state">State:</label>
+                    {{ form.state }}
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="form-group col-sm-4">
+                    <label for="pass_out_year_10th">10th Pass Out Year:</label>
+                    {{ form.pass_out_year_10th }}
+                </div>
+
+                <div class="form-group-10th-roll-number col-sm-4">
+                    <label for="roll_number_10th">10th Class Roll Number:</label>
+                    {{ form.roll_number_10th }}
+                </div>
+               
+                <div class="form-group col-sm-4">
+                    <label for="marks_10th">10th Class Marks Obtained:</label>
+                    {{ form.marks_10th }}
+                </div>
+                <div class="clearfix"></div>
+                
+                <div class="form-group col-sm-4">
+                    <label for="school_details_10th">10th Class School Details:</label>
+                    {{ form.school_details_10th }}
+                </div>
+                
+                <div class="form-group col-sm-4">
+                    <label for="pass_out_year_12th">12th Pass Out Year:</label>
+                    {{ form.pass_out_year_12th }}
+                </div>
+
+                <div class="form-group-12th-roll-number col-sm-4">
+                    <label for="roll_number_12th">12th Class Roll Number:</label>
+                    {{ form.roll_number_12th }}
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group col-sm-4">
+                    <label for="marks_12th">12th Class Marks Obtained:</label>
+                    {{ form.marks_12th }}
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <label for="school_details_12th">12th Class School Details:</label>
+                    {{ form.school_details_12th }}
+                </div>
+               
+                <div class="form-group-admission-date col-sm-4">
+                    <label for="date_of_admission">Admission Date:</label>
+                    {{ form.admission_date }}
+                </div>  
+
+                <div class="form-group col-sm-4">
+                    <label for="subjects">Subjects:</label>
+                    {{ form.subjects }}
+                </div>
+                
+                <div class="form-group col-sm-4">
+                    <label for="semester">Semester:</label>
+                    {{ form.current_semester }}
+                </div>
+                <div class="form-group col-sm-4">
+                    <label for="email">Email:</label>
+                    {{ form.email }}
+                </div>
+
+                
+                <div class="form-group col-sm-4">
+                    <label for="gender">Gender:</label>
+                    {{ form.gender }}
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="col-sm-12 submit_admission">
+                    <button type="submit" class="submit-button">Update</button>
+                </div>
+
+                <div class="clearfix"></div>
             </form>
         </div>
     </div>
