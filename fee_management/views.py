@@ -16,6 +16,8 @@ from django.http import HttpResponse
 import threading
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+Tfrom  = '+13348304110'
+
 @login_required
 def fee_detail(request):
     # Get a list of distinct semester values from the Student model
@@ -64,7 +66,7 @@ def fee_submission(request, student_id):
         try:
             message = client.messages.create(
                 to=formatted_to_number,
-                from_='+13348304110',  # Replace with your Twilio number
+                from_= Tfrom,  # Replace with your Twilio number
                 body=message
             )
         except Exception as e:
@@ -200,7 +202,7 @@ def send_message(request, student_id, remaining_amount):
     
         message = client.messages.create(
             to=formatted_to_number,
-            from_='+13348304110',
+            from_= Tfrom,
             body=message
         )
         return HttpResponse("Message sent successfully!")
