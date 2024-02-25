@@ -15,10 +15,12 @@ from django.conf import settings
 from django.http import HttpResponse
 import threading
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from loginapp.decorators import allowed_users
 
 Tfrom  = '+13348304110'
 
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def fee_detail(request):
     # Get a list of distinct semester values from the Student model
     semester_choices = AdmissionForm.objects.values_list('current_semester', flat=True).distinct()
@@ -47,6 +49,7 @@ def fee_detail(request):
 
 
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def fee_submission(request, student_id):
     student = get_object_or_404(AdmissionForm, id=student_id)
 
@@ -150,6 +153,7 @@ def fee_submission(request, student_id):
 
 
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def generate_receipt(request, fee_id):
     fee = get_object_or_404(Fee, id=fee_id)
     student = fee.student
@@ -163,6 +167,7 @@ def generate_receipt(request, fee_id):
 
 
 @login_required
+@allowed_users(allowed_roles=['admin'])
 def fee_history(request, student_id):
     student = get_object_or_404(AdmissionForm, id=student_id)  # Get the student by ID
 
@@ -182,7 +187,8 @@ def fee_history(request, student_id):
 
     return render(request, 'fee_management/fee_history.html', {'student': student, 'fee_history': fee_history})
 
-
+@login_required
+@allowed_users(allowed_roles=['admin'])
 def send_message(request, student_id, remaining_amount):
     student = get_object_or_404(AdmissionForm, id=student_id)
 
