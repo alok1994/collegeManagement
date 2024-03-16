@@ -593,4 +593,28 @@ a.delete_btn {
         }
         }
 
-        
+canvas#dailyChart {
+    /* width: 850px !important; */
+    height: 389px !important;
+    width: 550px !important;
+}
+canvas#weeklyChart {
+    /* width: 850px !important; */
+
+    height: 389px !important;
+    width: 550px !important;
+}
+.container-fluid .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.container-fluid .col-md-6 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+canvas {
+    margin-bottom: 20px;
+}
+

@@ -8,6 +8,7 @@
         <li><a href="{% url 'first_year' %}" class="{% if request.resolver_match.url_name == "first_year" %}active{% endif %}"><i class="fa fa-calendar" aria-hidden="true"></i> First Year</a></li>
         <li><a href="{% url 'second_year' %}" class="{% if request.resolver_match.url_name == "second_year" %}active{% endif %}"><i class="fa fa-calendar" aria-hidden="true"></i> Second Year</a></li>
         <li><a href="{% url 'third_year' %}" class="{% if request.resolver_match.url_name == "third_year" %}active{% endif %}"><i class="fa fa-calendar" aria-hidden="true"></i> Third Year</a></li>
+        <li><a href="{% url 'fee_dashboard' %}" class="{% if request.resolver_match.url_name == "fee_dashboard" %}active{% endif %}"><i class="fa fa-money" aria-hidden="true"></i>Fee Dashboard</a></li>
         <li><a href="{% url 'fee_detail' %}" class="{% if request.resolver_match.url_name == "fee_detail" %}active{% endif %}"><i class="fa fa-money" aria-hidden="true"></i> Fee Management</a></li>
         <li><a href="{% url 'student_list_details' %}" class="{% if request.resolver_match.url_name == "student_list_details" %}active{% endif %}"><i class="fa fa-certificate" aria-hidden="true"></i>Character Certificate</a></li>
         <li><a href="{% url 'student_list_details_transfer' %}" class="{% if request.resolver_match.url_name == "student_list_details_transfer" %}active{% endif %}"><i class="fa fa-certificate" aria-hidden="true"></i> Transfer Certificate</a></li>
