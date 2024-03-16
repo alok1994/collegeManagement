@@ -1,0 +1,26 @@
+<!-- error_page.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Permission Denied</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid full-width">
+        {% include 'sidebar.html' %}
+        <div class="content col-sm-10">
+            {% include 'headers.html' %}
+            <div class="content-header">
+				<h1>Permission Denied</h1>
+				<p>You are not authorized to access this page</p>
+            </div>
+    </div>
+</body>
+</html>
