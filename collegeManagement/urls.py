@@ -15,6 +15,7 @@ urlpatterns = [
     path('generate_tc/', include('transfer_certificate.urls')),
     path('', include('fee_structure.urls')),
     path('messagingapp/', include('messagingapp.urls')),
+    path('', include('fee_management.urls')),
     
 ]
 

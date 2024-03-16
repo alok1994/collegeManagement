@@ -59,23 +59,25 @@
     var feeHistoryData = [];
 
     // Loop through the fee_history data to organize it by semester
-    {% for fee in fee_history %}
+    "{% for fee in fee_history %}"
       var feeEntry = {
         payment_date: "{{ fee.payment_date }}",
-        semester: {{ fee.semester }},
-        registration_fee: {{ fee.registration_fee }},
-        tuition_fee: {{ fee.tuition_fee }},
-        exam_fee: {{ fee.exam_fee }},
-        miscellaneous_fee: {{ fee.miscellaneous_fee }},
-        late_fee: {{ fee.late_fee }},
-        discount_fee: {{ fee.discount_fee }},
-        total_semester_fee: {{ fee.total_semester_fee }},
-        total_paid_amount: {{ fee.total_paid_amount }},
-        remaining_amount: {{ fee.remaining_amount }}
+        semester: "{{ fee.semester }}",
+        registration_fee: "{{ fee.registration_fee }}",
+        tuition_fee: "{{ fee.tuition_fee }}",
+        exam_fee: "{{ fee.exam_fee }}",
+        miscellaneous_fee: "{{ fee.miscellaneous_fee }}",
+        late_fee: "{{ fee.late_fee }}",
+        discount_fee: "{{ fee.discount_fee }}",
+        total_semester_fee: "{{ fee.total_semester_fee }}",
+        total_paid_amount: "{{ fee.total_paid_amount }}",
+        advance_amount: "{{ fee.advance_payment }}",
+        remaining_amount: "{{ fee.remaining_amount }}",
+        
       };
       feeHistoryData.push(feeEntry);
-    {% endfor %}
-
+    "{% endfor %}"
+      
     // Sort the fee history data by semester
     feeHistoryData.sort((a, b) => a.semester - b.semester);
 
@@ -88,7 +90,7 @@
       if (feeEntry.semester !== currentSemester) {
         // Start a new table for a new semester
         currentTable = $("<table class='student_list_tab' border='1'></table>");
-        currentTable.append("<thead><tr><th>Payment Date</th><th>Registration Fee</th><th>Tuition Fee</th><th>Exam Fee</th><th>Miscellaneous Fee</th><th>Late Fee</th><th>Discount Fee</th><th>Total Semester Fee</th><th>Total Paid Amount</th><th>Remaining Amount</th><th>Actions</th></tr></thead>");
+        currentTable.append("<thead><tr><th>Payment Date</th><th>Registration Fee</th><th>Tuition Fee</th><th>Exam Fee</th><th>Miscellaneous Fee</th><th>Late Fee</th><th>Discount Fee</th><th>Total Semester Fee</th><th>Total Paid Amount</th><th>Advance Amount</th><th>Remaining Amount</th><th>Actions</th></tr></thead>");
         currentTable.append("<tbody>");
         feeHistoryContainer.append("<h3 class='semester'>Semester " + feeEntry.semester + "</h3>");
         feeHistoryContainer.append(currentTable);
@@ -96,7 +98,7 @@
       }
 
       // Add a row for each fee entry within the semester
-      currentTable.find("tbody").append("<tr><td>" + feeEntry.payment_date + "</td><td>" + feeEntry.registration_fee + "</td><td>" + feeEntry.tuition_fee + "</td><td>" + feeEntry.exam_fee + "</td><td>" + feeEntry.miscellaneous_fee + "</td><td>" + feeEntry.late_fee + "</td><td>" + feeEntry.discount_fee + "</td><td>" + feeEntry.total_semester_fee + "</td><td>" + feeEntry.total_paid_amount + "</td><td>" + feeEntry.remaining_amount + "</td><td><button class='send-message-button details_btn' data-semester='" + feeEntry.semester + "' data-amount='" + feeEntry.remaining_amount + "'>Send Message</button></td></tr>");
+      currentTable.find("tbody").append("<tr><td>" + feeEntry.payment_date + "</td><td>" + feeEntry.registration_fee + "</td><td>" + feeEntry.tuition_fee + "</td><td>" + feeEntry.exam_fee + "</td><td>" + feeEntry.miscellaneous_fee + "</td><td>" + feeEntry.late_fee + "</td><td>" + feeEntry.discount_fee + "</td><td>" + feeEntry.total_semester_fee + "</td><td>" + feeEntry.total_paid_amount + "</td><td>" + feeEntry.advance_amount + "</td><td>" + feeEntry.remaining_amount + "</td><td><button class='send-message-button details_btn' data-semester='" + feeEntry.semester + "' data-amount='" + feeEntry.advance_amount + "'' data-amount='" + feeEntry.remaining_amount + "'>Send Message</button></td></tr>");
     });
 
     // Attach a click event handler to the "Send Message" buttons

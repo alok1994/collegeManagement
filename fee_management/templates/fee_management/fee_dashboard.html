@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fee Submission</title>
+    <link rel="stylesheet" type="text/css" href="/static/fee_submission.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container-fluid full-width">
+        {% include 'sidebar.html' %}
+        <div class="content col-sm-10">
+            {% include 'headers.html' %}
+            <div class="center-text">
+                <h3> चन्द्रिका प्रसाद महाविद्यालय</h3> 
+                <p>ग्राम व पोस्ट : - रामपुर बरहन (खानगी), वि.ख - दुदही (कुशीनगर)</p>
+            </div>
+            <div class="container student_sec">
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas id="dailyChart" height="486" width="692" style="display: block; box-sizing: border-box; height: 389px; width: 554px; border: none; outline: none;"></canvas>
+                            <div style="margin-top: 10px;">
+                                <p style="text-align: center;">Today's Fee Collection: ₹{{ today_fee_collection }}</p>
+                            </div>                        
+                        </div>
+                        <div class="col-md-6">
+                            <canvas id="weeklyChart" height="675" width="692" style="height: 700px; width: 554px; border: none; outline: none; display: block; box-sizing: border-box;"></canvas>
+                            <div style="margin-top: 10px;">
+                                <p style="text-align: center;">Weekly Fee Collection: ₹{{ weekly_fee_collection }}</p>
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas id="monthlyChart" height="675" width="675" style="display: block; box-sizing: border-box; height: 540px; width: 540px; border: none; outline: none;"></canvas>
+                            <div style="margin-top: 10px;">
+                                <p style="text-align: center;">Monthly Fee Collection: ₹{{ monthly_fee_collection }}</p>
+                            </div>  
+                        </div>
+                        <div class="col-md-6">
+                            <canvas id="yearlyChart" height="675" width="692" style="height: 700px; width: 554px; border: none; outline: none; display: block; box-sizing: border-box;"></canvas>
+                            <div style="margin-top: 10px;">
+                                <p style="text-align: center;">Yearly Fee Collection: ₹{{ yearly_fee_collection }}</p>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                <!-- Existing JavaScript code in your fee_dashboard.html template -->
+
+                <script>
+                    // Function to fetch fee data from the API endpoint
+                    function fetchFeeData(apiEndpoint) {
+                        return fetch(apiEndpoint)
+                            .then(response => response.json())
+                            .catch(error => console.error('Error fetching fee data:', error));
+                    }
+
+                    // Function to update and create pie chart
+                    function updateAndCreatePieChart(canvasId, chartData) {
+                        var ctx = document.getElementById(canvasId).getContext('2d');
+                        new Chart(ctx, {
+                            type: 'pie',
+                            data: chartData,
+                        });
+                    }
+
+                    // Function to update and create doughnut chart
+                    function updateAndCreateDoughnutChart(canvasId, chartData) {
+                        var ctx = document.getElementById(canvasId).getContext('2d');
+                        new Chart(ctx, {
+                            type: 'doughnut',
+                            data: chartData,
+                        });
+                    }
+
+                    // Function to update and create bar chart with multiple colors
+                    function updateAndCreateBarChart(canvasId, chartData, colors) {
+                        var ctx = document.getElementById(canvasId).getContext('2d');
+                        new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: chartData.labels,
+                                datasets: [{
+                                    data: chartData.datasets[0].data,
+                                    backgroundColor: colors, // Specify an array of colors for each bar
+                                }],
+                            },
+                        });
+                    }
+
+                    // API endpoint for fee data (replace with your actual API endpoint)
+                    var feeApiEndpoint = '/fee_dashboard/api/';
+
+                    // Fetch fee data and update charts
+                    fetchFeeData(feeApiEndpoint)
+                        .then(function (data) {
+                            console.log('Data received:', data);
+
+                            // Check if data has the expected structure
+                            if (data.today_fee_entries && data.weekly_fee_entries && data.monthly_fee_collection) {
+                                // Process today's data
+                                var todayData = {
+                                    labels: data.today_fee_entries.map(entry => entry.fields.receipt_number),
+                                    datasets: [{
+                                        data: data.today_fee_entries.map(entry => entry.fields.total_paid_amount),
+                                    }],
+                                    receiptNumbers: data.today_fee_entries.map(entry => entry.fields.receipt_number),
+                                };
+
+                                updateAndCreatePieChart('dailyChart', todayData);
+
+                                // Process weekly data
+                                var weeklyChartData = {
+                                    labels: Object.keys(data.weekly_fee_entries),
+                                    datasets: [{
+                                        data: Object.values(data.weekly_fee_entries),
+                                    }],
+                                };
+
+                                // Specify an array of colors for each bar (customize as needed)
+                                var barColors = ['#FF5733', '#33FF57', '#5733FF', 'pink', '#33FF57', '#5733FF', 'red'];
+
+                                updateAndCreateBarChart('weeklyChart', weeklyChartData, barColors);
+
+                                var monthlyChartData = {
+                                    labels: Object.keys(data.monthly_fee_collection),
+                                    datasets: [{
+                                        data: Object.values(data.monthly_fee_collection),
+                                    }],
+                                };
+
+                                // Specify an array of colors for each segment (customize as needed)
+                                var doughnutColors = ['#FF5733', '#33FF57', '#5733FF', 'pink', '#33FF57', '#5733FF', 'red'];
+
+                                updateAndCreateDoughnutChart('monthlyChart', monthlyChartData, doughnutColors);
+
+                                
+                                var yearlyChartData = {
+                                    labels: Object.keys(data.yearly_fee_collection),
+                                    datasets: [{
+                                        data: Object.values(data.yearly_fee_collection),
+                                    }],
+                                };
+
+                                // Specify an array of colors for each bar (customize as needed)
+                                var barColors = ['#FF5733', '#33FF57', '#5733FF', 'pink', '#33FF57', '#5733FF', 'red'];
+
+                                updateAndCreateBarChart('yearlyChart', yearlyChartData, barColors);
+
+                            } else {
+                                console.error('Invalid data format:', data);
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                </script>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

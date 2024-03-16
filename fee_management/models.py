@@ -17,6 +17,8 @@ class Fee(models.Model):
     discount_fee = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     remaining_amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     total_semester_fee = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    advance_payment = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+
     comments = models.CharField(max_length=1000)
 
     def __str__(self):
